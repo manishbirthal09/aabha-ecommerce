@@ -6,7 +6,7 @@ const Hero = () => {
     <section className="relative min-h-[70vh] md:min-h-[90vh] flex items-center md:pb-0">
       {/* Background image */}
       <img
-        src="/images/aahero.png"
+        src="/images/aahomeimage.png"
         alt="Handpoured candle"
         className="absolute inset-0 w-full h-full object-cover object-center"
       />

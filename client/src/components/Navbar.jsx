@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <header className="bg-background border-b border-secondary sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16 md:h-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-11 md:h-15">
         
         {/* Mobile menu toggle */}
         <button
@@ -25,12 +25,17 @@ const Navbar = () => {
         </button>
 
         {/* Logo */}
-        <Link
+        <img
+        src="/images/aalogo.png"
+        alt="Handpoured candle"
+        className="h-20 md:h-25 w-auto object-contain"
+      />
+        {/* <Link
           to="/"
           className="font-rock-salt text-3xl md:text-4xl font-semibold tracking-wide text-charcoal mx-auto md:mx-0"
         >
           Aabha 
-        </Link>
+        </Link> */}
 
         {/* Desktop nav links */}
         <nav className="hidden md:flex items-center gap-8 font-body text-sm text-charcoal">
