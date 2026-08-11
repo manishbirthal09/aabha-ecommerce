@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #F5D9DC;
+  --color-secondary: #F5EFE6;
+  --color-background: #FFFFFF;
+  --color-charcoal: #1A1A1A;
+--font-brand:  'Pacifico', cursive;
+--font-rock-salt: 'Rock Salt', cursive;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-charcoal);
+  background-color: var(--color-background);
+}
