@@ -28,16 +28,16 @@ const Hero = () => {
             Handcrafted soy candles and hampers made in small batches to
             bring warmth, calm and beauty to your everyday.
           </p>
-          <div className="flex flex-col gap-3 max-w-3xs   md:max-w-none md:flex-row">
+          <div className="flex flex-col items-start gap-3 max-w-3xs   md:max-w-none md:flex-row">
             <Link
               to="/shop"
-              className="inline-flex items-center justify-center  bg-charcoal text-background font-body text-sm   md:px-8 py-2 md:py-4 rounded-lg hover:opacity-90 transition-opacity"
+              className="inline-flex items-center justify-center  bg-charcoal text-background font-body text-sm  px-6 md:px-8 py-2 md:py-4 rounded-lg hover:opacity-90 transition-opacity"
             >
               Shop Candles <span>→</span>
             </Link>
             <Link
               to="/shop"
-              className="inline-flex items-center justify-center gap-1 border border-charcoal text-charcoal font-body text-sm  md:px-8 py-2 md:py-4 rounded-lg hover:bg-charcoal hover:text-background transition-colors"
+              className="inline-flex items-center justify-center gap-1 border border-charcoal text-charcoal font-body text-sm  px-6 md:px-8 py-2 md:py-4 rounded-lg hover:bg-charcoal hover:text-background transition-colors"
             >
               Explore Collections <span>→</span>
             </Link>
