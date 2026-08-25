@@ -1,8 +1,29 @@
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import { trendingProducts } from '../data/dummyProducts';
+import { useState, useEffect } from 'react';
+import api from '../api/axios';
+
 
 const TrendingNow = () => {
+  const [trendingProducts, setTrendingProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTrending = async () => {
+      try {
+        const { data } = await api.get('/products');
+        console.log('products response:', data); // ya '/products?trending=true' agar filter hai
+        setTrendingProducts(data.products);
+      } catch (err) {
+        console.error('Failed to fetch trending products:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTrending();
+  }, []);
+
+  if (loading) return null;
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
       <div className="flex items-center justify-between mb-8">
@@ -10,7 +31,7 @@ const TrendingNow = () => {
           Trending Now
         </h2>
         <Link
-          to="/shop"
+          to="/products"
           className="font-body text-sm font-semibold text-charcoal/60 hover:text-charcoal transition-colors"
         >
           View All →

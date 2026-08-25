@@ -17,7 +17,7 @@ const CustomCandleBanner = () => {
           href="#"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block bg-charcoal text-background font-body text-sm px-8 py-3 rounded-full hover:opacity-90 transition-opacity"
+          className="inline-block border border-charcoal text-charcoal font-body text-sm px-5 py-1.5  hover:opacity-90 transition-opacity"
         >
           Enquire Now
         </a>

@@ -21,19 +21,7 @@ const usps = [
   </svg>
 ),
 heading: "Eco Friendly & Sustainable",
-    // icon: (
-    //   <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-14 h-14 md:w-16 md:h-16 mx-auto">
-    //     <circle cx="40" cy="40" r="30" stroke="#1A1A1A" strokeWidth="1" strokeDasharray="2 3"/>
-    //     <path d="M40 22 a10 10 0 1 0 0.01 0" fill="#1A1A1A"/>
-    //     <rect x="37" y="16" width="6" height="4" fill="#1A1A1A"/>
-    //     <rect x="37" y="48" width="6" height="4" fill="#1A1A1A"/>
-    //     <rect x="16" y="37" width="4" height="6" fill="#1A1A1A"/>
-    //     <rect x="48" y="37" width="4" height="6" fill="#1A1A1A"/>
-    //     <path d="M45 34 C50 30 56 32 56 38 C56 44 50 44 47 41" fill="#1A1A1A"/>
-    //     <path d="M35 30 C33 26 36 22 40 24 C42 25 42 28 40 30" fill="#F5EFE6"/>
-    //   </svg>
-    // ),
-    // heading: "Eco Friendly & Sustainable",
+   
   },
   {
 
@@ -68,16 +56,7 @@ heading: "Eco Friendly & Sustainable",
   </svg>
 ),
 heading: "Handcrafted With Love",
-    // icon: (
-    //   <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-14 h-14 md:w-16 md:h-16 mx-auto">
-    //     <circle cx="40" cy="40" r="30" stroke="#1A1A1A" strokeWidth="1" strokeDasharray="2 3"/>
-    //     <path d="M22 40 C22 34 27 30 32 32 C34 33 36 36 36 38 L36 44 L24 44 C22.5 44 22 42 22 40Z" fill="#1A1A1A"/>
-    //     <path d="M58 40 C58 34 53 30 48 32 C46 33 44 36 44 38 L44 44 L56 44 C57.5 44 58 42 58 40Z" fill="#1A1A1A"/>
-    //     <path d="M32 44 L48 44 L48 46 C48 52 44 56 40 56 C36 56 32 52 32 46Z" fill="#1A1A1A"/>
-    //     <path d="M36 44 C36 40 38 39 40 41 C42 39 44 40 44 44" fill="#F5EFE6"/>
-    //   </svg>
-    // ),
-    // heading: "Handcrafted With Love",
+   
   },
   {
     icon: (

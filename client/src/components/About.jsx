@@ -49,40 +49,14 @@ const About = () => {
 
       <USPSection />
 
-      {/* Values strip */}
-      {/* <section className="bg-secondary py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <h2 className="font-heading text-2xl md:text-3xl font-semibold text-charcoal text-center mb-12">
-            What Goes Into Every Candle
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            {[
-              { title: '100% Soy Wax', desc: 'Clean burning, natural' },
-              { title: 'Cotton Wicks', desc: 'No lead, no soot' },
-              { title: 'Hand Poured', desc: 'Small batches only' },
-              { title: 'Long Lasting', desc: '40+ hours burn time' },
-            ].map((item) => (
-              <div key={item.title} className="text-center">
-                <h3 className="font-heading text-sm md:text-base font-semibold text-charcoal mb-1">
-                  {item.title}
-                </h3>
-                <p className="font-body text-xs md:text-sm text-charcoal/60">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-      {/* CTA */}
+      
       <section className="max-w-3xl mx-auto px-4 md:px-8 py-16 md:py-20 text-center">
         <h2 className="font-heading text-2xl md:text-3xl font-semibold text-charcoal mb-4">
           Ready to Light Up Your Space?
         </h2>
         <a
-          href="/shop"
-          className="inline-block bg-charcoal text-background font-body text-sm px-8 py-3 rounded-full hover:opacity-90 transition-opacity"
+          href="/products"
+          className="inline-block border border-charcoal text-charcoal font-body text-sm px-5 py-1.5  hover:opacity-90 transition-opacity"
         >
           Shop Our Collection
         </a>
