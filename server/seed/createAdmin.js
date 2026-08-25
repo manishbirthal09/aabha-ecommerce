@@ -9,8 +9,8 @@ import Admin from "../models/Admin.js";
 const run = async () => {
   await mongoose.connect(process.env.MONGO_URI);
 
-  const email = "admin@aabhabybhanupriya.com";
-  const password = "AabhaAdminPassword@2026";
+  const email = process.env.ADMIN_EMAIL;
+  const password = process.env.ADMIN_PASSWORD;
 
   const hashed = await bcrypt.hash(password, 10);
 
