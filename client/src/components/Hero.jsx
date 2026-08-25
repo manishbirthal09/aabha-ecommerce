@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <section className="relative min-h-[70vh] md:min-h-[90vh] flex items-center md:pb-0">
-      {/* Background image */}
+      
       <img
         src="/images/aahomeimage.png"
         alt="Handpoured candle"
         className="absolute inset-0 w-full h-full object-cover object-center"
       />
 
-      {/* Overlay for text readability */}
+      
       <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-background/30 via-background/10 md:via-background/30 to-background/20 md:to-transparent" />
 
       {/* Text content */}
@@ -30,14 +30,14 @@ const Hero = () => {
           </p>
           <div className="flex flex-col items-start gap-3 max-w-3xs   md:max-w-none md:flex-row">
             <Link
-              to="/shop"
-              className="inline-flex items-center justify-center  bg-charcoal text-background font-body text-sm  px-6 md:px-8 py-2 md:py-4 rounded-lg hover:opacity-90 transition-opacity"
+              to="/products"
+              className="inline-flex items-center justify-center  bg-charcoal text-background font-body text-sm  px-6 md:px-8 py-2 md:py-4  hover:opacity-90 transition-opacity"
             >
               Shop Candles <span>→</span>
             </Link>
             <Link
-              to="/shop"
-              className="inline-flex items-center justify-center gap-1 border border-charcoal text-charcoal font-body text-sm  px-6 md:px-8 py-2 md:py-4 rounded-lg hover:bg-charcoal hover:text-background transition-colors"
+              to="/products"
+              className="inline-flex items-center justify-center gap-1 border border-charcoal text-charcoal font-body text-sm  px-6 md:px-8 py-2 md:py-4  hover:bg-charcoal hover:text-background transition-colors"
             >
               Explore Collections <span>→</span>
             </Link>

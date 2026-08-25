@@ -30,12 +30,7 @@ const Navbar = () => {
         alt="Handpoured candle"
         className="h-20 md:h-25 w-auto object-contain"
       />
-        {/* <Link
-          to="/"
-          className="font-rock-salt text-3xl md:text-4xl font-semibold tracking-wide text-charcoal mx-auto md:mx-0"
-        >
-          Aabha 
-        </Link> */}
+       
 
         {/* Desktop nav links */}
         <nav className="hidden md:flex items-center gap-8 font-body text-sm text-charcoal">
@@ -58,7 +53,7 @@ const Navbar = () => {
           <button className="hidden sm:block hover:opacity-60 transition-opacity">
             <Heart size={20} />
           </button>
-          <Link to="/account" className="hover:opacity-60 transition-opacity">
+          <Link to="/profile" className="hover:opacity-60 transition-opacity">
             <User size={20} />
           </Link>
           <Link to="/cart" className="relative hover:opacity-60 transition-opacity">
