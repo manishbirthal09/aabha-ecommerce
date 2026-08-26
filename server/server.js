@@ -36,7 +36,7 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/payment", paymentRoutes);
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB error:", err));
 
