@@ -19,7 +19,7 @@ export default function Checkout() {
   const [placing, setPlacing] = useState(false);
   const [error, setError] = useState("");
 
-  // redirect to login if not authenticated
+  
   useEffect(() => {
   if (!isAuthenticated) {
     navigate("/login", { state: { from: "/checkout" }, replace: true });}
@@ -62,13 +62,13 @@ if (!isAuthenticated) {
     });
 
     if (paymentMethod === "razorpay") {
-      // Step 1: Razorpay order create karo
+      
       const { data } = await api.post("/payment/create-order", {
         amount: totalAmount,
         orderId: order._id,
       });
 
-      // Step 2: Checkout popup kholo
+      
       const options = {
         key: data.key_id,
         amount: data.amount,
@@ -98,7 +98,7 @@ if (!isAuthenticated) {
         },
         modal: {
           ondismiss: function () {
-            // user ne popup band kar diya bina pay kiye
+           
             setPlacing(false);
           },
         },
@@ -122,39 +122,7 @@ if (!isAuthenticated) {
   }
 };
 
-//   const handlePlaceOrder = async (e) => {
-//     e.preventDefault();
-//     setError("");
-//     setPlacing(true);
 
-//     try {
-//       const items = cart.items.map((item) => ({
-//         product: item.product._id,
-//         name: item.product.name,
-//         price: item.product.discountPrice || item.product.price,
-//         quantity: item.quantity,
-//       }));
-
-//       const { data: order } = await api.post("/orders", {
-//         items,
-//         totalAmount,
-//         customer: address,
-//         paymentMethod, // 👈 PhonePe pending, using COD for now
-//       });
-
-//       // clear cart after order (optional — depends on your cart clearing strategy)
-//       if (paymentMethod === "phonepe") {
-//   const { data: paymentData } = await api.post(`/payment/initiate/${order._id}`);
-//   window.location.href = paymentData.redirectUrl;
-// } else {
-//   navigate(`/order-success/${order._id}`);
-// }
-//     } catch (err) {
-//       setError(err.response?.data?.message || "Failed to place order");
-//     } finally {
-//       setPlacing(false);
-//     }
-//   };
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-10">
@@ -256,9 +224,7 @@ if (!isAuthenticated) {
     </label>
   </div>
 </div>
-        {/* <div className="bg-yellow-50 text-yellow-800 text-xs p-3 rounded">
-          Online payment (PhonePe) coming soon — orders are currently Cash on Delivery only.
-        </div> */}
+      
 
         <button
           type="submit"
