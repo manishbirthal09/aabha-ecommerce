@@ -4,7 +4,7 @@ import api from "../api/axios";
 export default function CategoryForm({ category, onClose, onSaved }) {
   const [name, setName] = useState(category?.name || "");
   const [description, setDescription] = useState(category?.description || "");
-  const [image, setImage] = useState(null);
+  
   const [saving, setSaving] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -13,7 +13,7 @@ export default function CategoryForm({ category, onClose, onSaved }) {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
-    if (image) formData.append("image", image);
+    
 
     try {
       if (category) {
@@ -45,7 +45,7 @@ export default function CategoryForm({ category, onClose, onSaved }) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="w-full border rounded-md px-3 py-2 mt-1 text-sm min-h-[100px] resize-y"
+            className="w-full border rounded-md px-3 py-2 mt-1 text-sm min-h-25 resize-y"
           />
         </div>
 
@@ -58,15 +58,7 @@ export default function CategoryForm({ category, onClose, onSaved }) {
           />
         </div>
 
-        <div>
-          <label className="text-sm text-gray-600">Image</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-            className="w-full text-sm mt-1"
-          />
-        </div>
+        
 
     <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-2">
           <button type="button" onClick={onClose} className="px-4 py-2 text-sm border rounded-md w-full sm:w-auto">

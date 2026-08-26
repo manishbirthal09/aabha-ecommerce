@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// Helper: loads Razorpay's checkout script dynamically (only once)
+
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {
     if (document.getElementById("razorpay-checkout-js")) {
@@ -22,7 +22,7 @@ export default function RazorpayCheckout({ orderId, amount, customerName, custom
   const handlePayment = async () => {
     setLoading(true);
 
-    // 1. Load Razorpay's script if not already loaded
+    
     const scriptLoaded = await loadRazorpayScript();
     if (!scriptLoaded) {
       alert("Razorpay SDK failed to load. Check your internet connection.");
@@ -30,7 +30,7 @@ export default function RazorpayCheckout({ orderId, amount, customerName, custom
       return;
     }
 
-    // 2. Ask YOUR backend to create a Razorpay order
+   
     const res = await fetch("/api/payment/create-order", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -44,7 +44,7 @@ export default function RazorpayCheckout({ orderId, amount, customerName, custom
       return;
     }
 
-    // 3. Open the Razorpay checkout modal with that order_id
+   
     const options = {
       key: data.key_id,
       amount: data.amount,
@@ -57,13 +57,9 @@ export default function RazorpayCheckout({ orderId, amount, customerName, custom
         email: customerEmail,
         contact: customerPhone,
       },
-      theme: { color: "#6b1e2a" }, // adjust to your brand color
-
-      // 4. This runs automatically when payment succeeds inside the modal
+      theme: { color: "#6b1e2a" }, 
       handler: async function (response) {
-        // response contains: razorpay_payment_id, razorpay_order_id, razorpay_signature
-
-        // 5. Send these to YOUR backend to verify authenticity
+       
         const verifyRes = await fetch("/api/payment/verify-payment", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -77,7 +73,7 @@ export default function RazorpayCheckout({ orderId, amount, customerName, custom
         const verifyData = await verifyRes.json();
 
         if (verifyData.success) {
-          onSuccess(); // e.g. redirect to "Order Confirmed" page
+          onSuccess(); 
         } else {
           alert("Payment verification failed. Contact support if amount was deducted.");
         }
@@ -85,7 +81,7 @@ export default function RazorpayCheckout({ orderId, amount, customerName, custom
 
       modal: {
         ondismiss: function () {
-          // user closed the popup without paying
+          
           setLoading(false);
         },
       },
