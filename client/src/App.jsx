@@ -3,7 +3,7 @@ import { CartProvider } from './context/CartContext';
 import { CustomerAuthProvider } from './context/CustomerAuthContext';
 import {  Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Trendingnow from "./components/TrendingNow";
+import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 
@@ -19,7 +19,7 @@ const App = () => {
     
         <Routes>
  <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Trendingnow/>} />
+        <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
          <Route path="/login" element={<Login />} />          
