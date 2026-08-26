@@ -17,6 +17,8 @@ app.use(cors({
   origin: [
      'http://localhost:5173',
      'http://localhost:5175',
+     'https://aabha-ecommerce.vercel.app',
+     'https://manishbirthal09-aabha-ecommerce.vercel.app'
   ],
   credentials: true,
 }));
