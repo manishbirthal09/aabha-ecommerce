@@ -7,7 +7,7 @@ dotenv.config();
 import Admin from "../models/Admin.js";
 
 const run = async () => {
-  await mongoose.connect(process.env.MONGO_URI);
+  await mongoose.connect(process.env.MONGODB_URI);
 
   const email = process.env.ADMIN_EMAIL;
   const password = process.env.ADMIN_PASSWORD;
