@@ -45,7 +45,7 @@ export default function CategoryForm({ category, onClose, onSaved }) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="w-full border rounded-md px-3 py-2 mt-1 text-sm min-h-25 resize-y"
+            className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm min-h-25 resize-y"
           />
         </div>
 
@@ -54,7 +54,7 @@ export default function CategoryForm({ category, onClose, onSaved }) {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+            className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
           />
         </div>
 

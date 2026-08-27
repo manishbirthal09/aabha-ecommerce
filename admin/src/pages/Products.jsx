@@ -45,15 +45,15 @@ export default function Products() {
         <p className="text-sm text-gray-500">Loading...</p>
       ) : (
           <div className="overflow-x-auto bg-white rounded-lg shadow-sm">
-  <table className="min-w-[850px] w-full text-sm">
+  <table className="min-w-212.5 w-full text-sm">
           <thead className="bg-gray-100 text-left text-gray-600">
             <tr>
-              <th className="p-3">Image</th>
-              <th className="p-3">Name</th>
-              <th className="p-3">Category</th>
-              <th className="p-3">Price</th>
-              <th className="p-3">Stock</th>
-              <th className="p-3">Actions</th>
+              <th className="p-3 whitespace-nowrap">Image</th>
+              <th className="p-3 whitespace-nowrap">Name</th>
+              <th className="p-3 whitespace-nowrap">Category</th>
+              <th className="p-3 whitespace-nowrap">Price</th>
+              <th className="p-3 whitespace-nowrap">Stock</th>
+              <th className="p-3 whitespace-nowrap">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -70,11 +70,11 @@ export default function Products() {
                   ) : null}
                   </div>
                 </td>
-                <td className="p-3">{p.name}</td>
-                <td className="p-3 text-gray-500">{p.category?.name}</td>
-                <td className="p-3">₹{p.price}</td>
-                <td className="p-3">{p.stock}</td>
-                <td className="p-3 space-x-3">
+                <td className="p-3 whitespace-nowrap">{p.name}</td>
+                <td className="p-3 whitespace-nowrap text-gray-500">{p.category?.name}</td>
+                <td className="p-3 whitespace-nowrap">₹{p.price}</td>
+                <td className="p-3 whitespace-nowrap">{p.stock}</td>
+                <td className="p-3 whitespace-nowrap space-x-3">
                   <button
                     onClick={() => {
                       setEditing(p);

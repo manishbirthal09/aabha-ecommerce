@@ -50,18 +50,18 @@ export default function Categories() {
           <thead className="bg-gray-100 text-left text-gray-600">
             <tr>
               
-              <th className="p-3">Name</th>
-              <th className="p-3">Slug</th>
-              <th className="p-3">Actions</th>
+              <th className="p-3 whitespace-nowrap">Name</th>
+              <th className="p-3 whitespace-nowrap">Slug</th>
+              <th className="p-3 whitespace-nowrap ">Actions</th>
             </tr>
           </thead>
           <tbody>
             {categories.map((cat) => (
               <tr key={cat._id} className="border-t">
                 
-                <td className="p-3">{cat.name}</td>
-                <td className="p-3 text-gray-500">{cat.slug}</td>
-                <td className="p-3">
+                <td className="p-3 whitespace-nowrap">{cat.name}</td>
+                <td className="p-3 whitespace-nowrap text-gray-500">{cat.slug}</td>
+                <td className="p-3 whitespace-nowrap">
   <div className="flex gap-3 flex-wrap">
                   <button
                     onClick={() => {

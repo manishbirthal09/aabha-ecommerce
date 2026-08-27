@@ -59,7 +59,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
             value={form.name}
             onChange={handleChange}
             required
-            className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+            className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
           />
         </div>
 
@@ -69,7 +69,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
             name="description"
             value={form.description}
             onChange={handleChange}
-            className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+            className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
           />
         </div>
 
@@ -82,7 +82,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
               value={form.price}
               onChange={handleChange}
               required
-              className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+              className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
             />
           </div>
           <div>
@@ -93,7 +93,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
               value={form.stock}
               onChange={handleChange}
               required
-              className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+              className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
             />
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
             value={form.category}
             onChange={handleChange}
             required
-            className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+            className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
           >
             <option value="">Select category</option>
             {categories.map((c) => (
@@ -116,27 +116,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
           </select>
         </div>
 
-        {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* <div>
-            <label className="text-sm text-gray-600">Color</label>
-            <input
-              name="color"
-              value={form.color}
-              onChange={handleChange}
-              className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
-            />
-          </div> */}
-          {/* <div>
-            <label className="text-sm text-gray-600">Fabric</label>
-            <input
-              name="fabric"
-              value={form.fabric}
-              onChange={handleChange}
-              className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
-            />
-          </div> 
-        </div> */}
-
+      
         <div>
           <label className="text-sm text-gray-600">Images</label>
           <input
@@ -144,7 +124,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
             accept="image/*"
             multiple
             onChange={(e) => setImages(Array.from(e.target.files))}
-            className="w-full text-sm mt-1"
+            className="w-4/5 mx-auto sm:w-full sm:mx-0 text-sm mt-1"
           />
         </div>
 

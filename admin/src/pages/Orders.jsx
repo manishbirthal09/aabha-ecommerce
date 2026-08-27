@@ -53,17 +53,17 @@ export default function Orders() {
         <p className="text-sm text-gray-500">No orders yet.</p>
       ) : (
         <div className="overflow-x-auto bg-white rounded-lg shadow-sm">
-  <table className="min-w-[900px] w-full text-sm">
+  <table className="min-w-225 w-full text-sm">
         
             <thead className="bg-gray-100 text-left text-gray-600">
               <tr>
-                <th className="p-3">Order ID</th>
-                <th className="p-3">Customer</th>
-                <th className="p-3">Amount</th>
-                <th className="p-3">Payment</th>
-                <th className="p-3">Status</th>
-                <th className="p-3">Date</th>
-                <th className="p-3"></th>
+                <th className="p-3 whitespace-nowrap">Order ID</th>
+                <th className="p-3 whitespace-nowrap">Customer</th>
+                <th className="p-3 whitespace-nowrap">Amount</th>
+                <th className="p-3 whitespace-nowrap">Payment</th>
+                <th className="p-3 whitespace-nowrap">Status</th>
+                <th className="p-3 whitespace-nowrap">Date</th>
+                <th className="p-3 "></th>
               </tr>
             </thead>
             <tbody>
@@ -73,9 +73,9 @@ export default function Orders() {
                     <td className="p-3 font-mono text-xs">
                       {order._id.slice(-8).toUpperCase()}
                     </td>
-                    <td className="p-3">{order.customer?.name}</td>
-                    <td className="p-3">₹{order.totalAmount}</td>
-                    <td className="p-3">
+                    <td className="p-3 whitespace-nowrap">{order.customer?.name}</td>
+                    <td className="p-3 whitespace-nowrap">₹{order.totalAmount}</td>
+                    <td className="p-3 whitespace-nowrap">
                       <span
                         className={`px-2 py-1 rounded text-xs ${
                           order.paymentStatus === "paid"
@@ -91,7 +91,7 @@ export default function Orders() {
                         value={order.status}
                         disabled={updatingId === order._id}
                         onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                        className={`w-full min-w-[120px] text-xs px-2 py-1 rounded border font-medium ${statusColors[order.status]}`}
+                        className={`w-full min-w-30 text-xs px-2 py-1 rounded border font-medium ${statusColors[order.status]}`}
                         >
                         {STATUS_OPTIONS.map((s) => (
                           <option key={s} value={s}>
@@ -121,10 +121,10 @@ export default function Orders() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div>
                             <h3 className="font-medium mb-2">Shipping Address</h3>
-                            <p className="text-gray-600 break-words">
+                            <p className="text-gray-600 wrap-break-word">
                               {order.customer?.name} — {order.customer?.phone}
                             </p>
-                            <p className="text-gray-600 break-words">
+                            <p className="text-gray-600 wrap-break-word">
                               {order.customer?.address}, {order.customer?.city} -{" "}
                               {order.customer?.pincode}
                             </p>
