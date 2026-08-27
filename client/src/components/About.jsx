@@ -20,7 +20,7 @@ const About = () => {
         <img
           src="/images/alogo.jpg"
           alt="Candle making process"
-          className="w-full h-75 md:h-[450px] object-cover  rounded"
+          className="w-full h-75 md:h-112.5 object-cover  rounded"
         />
         <div>
           <h2 className="font-heading text-2xl md:text-3xl font-semibold text-charcoal mb-4">

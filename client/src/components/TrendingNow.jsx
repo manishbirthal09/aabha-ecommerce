@@ -12,7 +12,7 @@ const TrendingNow = () => {
     const fetchTrending = async () => {
       try {
         const { data } = await api.get('/products');
-        console.log('products response:', data); // ya '/products?trending=true' agar filter hai
+        console.log('products response:', data); 
         setTrendingProducts(data.products);
       } catch (err) {
         console.error('Failed to fetch trending products:', err);

@@ -9,15 +9,15 @@ import ProductCard from "../components/ProductCard";
 import { Search } from "lucide-react";
 import ProductCardSkeleton from "../components/ProductCardSkeleton";
 import { Link } from "react-router-dom";
-
+import { useSearchParams, Link } from "react-router-dom";
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search);
-
+const [searchParams] = useSearchParams();
   const [filters, setFilters] = useState({
-    categories: [],
+    categories: searchParams.get("category") ? [searchParams.get("category")] : [],
     fabrics: [],
     colors: [],
     maxPrice: 10000,

@@ -12,7 +12,7 @@ const Hero = () => {
       />
 
       
-      <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-background/30 via-background/10 md:via-background/30 to-background/20 md:to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-b md:bg-linear-to-r from-background/30 via-background/10 md:via-background/30 to-background/20 md:to-transparent" />
 
       {/* Text content */}
       <div className="relative max-w-7xl mx-auto px-6 md:px-12 w-full pt-7 md:pt-0 pb-10 md:py-0">
