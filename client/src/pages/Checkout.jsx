@@ -74,7 +74,7 @@ if (!isAuthenticated) {
         amount: data.amount,
         currency: data.currency,
         order_id: data.order_id,
-        name: "Thathwam Sarees",
+        name: "aabhabyBhanupriya",
         description: "Order Payment",
         handler: async function (response) {
           try {
@@ -107,7 +107,7 @@ if (!isAuthenticated) {
           email: customer?.email || "",
           contact: address.phone,
         },
-        theme: { color: "#3F010C" },
+        theme: { color: "#1A1A1A" },
       };
 
       const rzp = new window.Razorpay(options);
