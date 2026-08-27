@@ -128,18 +128,20 @@ export default function ProductForm({ product, onClose, onSaved }) {
           />
         </div>
 
-        <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-2">
-          <button type="button" onClick={onClose} className="px-4 py-2 text-sm border rounded-md w-full sm:w-auto">
-            Cancel
-          </button>
-          <button
-            type="submit"
-            disabled={saving}
-            className="bg-gray-900 text-white px-4 py-2 rounded-md text-sm disabled:opacity-50 w-full sm:w-auto"
-           >
-            {saving ? "Saving..." : "Save"}
-          </button>
-        </div>
+
+<div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-2">
+  <button type="button" onClick={onClose} className="w-4/5 mx-auto sm:w-auto sm:mx-0 px-4 py-2 text-sm border rounded-md">
+    Cancel
+  </button>
+  <button
+    type="submit"
+    disabled={saving}
+    className="w-4/5 mx-auto sm:w-auto sm:mx-0 bg-gray-900 text-white px-4 py-2 rounded-md text-sm disabled:opacity-50"
+  >
+    {saving ? "Saving..." : "Save"}
+  </button>
+</div>
+        
       </form>
     </div>
   );
