@@ -9,7 +9,7 @@ import ProductCard from "../components/ProductCard";
 import { Search } from "lucide-react";
 import ProductCardSkeleton from "../components/ProductCardSkeleton";
 import { Link } from "react-router-dom";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
