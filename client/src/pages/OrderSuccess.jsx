@@ -14,7 +14,7 @@ export default function OrderSuccess() {
       .then(({ data }) => {
         setStatus(data.paymentStatus === "paid" ? "success" : "failed");
       })
-      .catch(() => setStatus("cod")); // agar payment API fail ho (COD order tha), treat as normal success
+      .catch(() => setStatus("cod")); 
   }, [orderId]);
 
   if (status === "checking") {
@@ -42,7 +42,7 @@ export default function OrderSuccess() {
       <h1 className="text-2xl font-serif mb-4 text-charcoal">Order Placed!</h1>
       <p className="text-gray-500 mb-2">Thank you for shopping with us.</p>
       <p className="text-xs text-gray-400 mb-8">Order ID: {orderId}</p>
-      <Link to="/products" className="inline-block px-6 py-3 bg-charcoal text-white text-sm rounded">
+      <Link to="/" className="inline-block px-6 py-3 bg-charcoal text-white text-sm rounded">
         Continue Shopping
       </Link>
     </div>
