@@ -53,7 +53,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
         </h2>
 
         <div>
-          <label className="text-sm text-gray-600">Name</label>
+          <label className="block text-sm text-gray-600">Name</label>
           <input
             name="name"
             value={form.name}
@@ -64,7 +64,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
         </div>
 
         <div>
-          <label className="text-sm text-gray-600">Description</label>
+          <label className="block text-sm text-gray-600">Description</label>
           <textarea
             name="description"
             value={form.description}
@@ -75,7 +75,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
 
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="text-sm text-gray-600">Price</label>
+            <label className="block text-sm text-gray-600">Price</label>
             <input
               name="price"
               type="number"
@@ -86,7 +86,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
             />
           </div>
           <div>
-            <label className="text-sm text-gray-600">Stock</label>
+            <label className="block text-sm text-gray-600">Stock</label>
             <input
               name="stock"
               type="number"
@@ -99,7 +99,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
         </div>
 
         <div>
-          <label className="text-sm text-gray-600">Category</label>
+          <label className="block text-sm text-gray-600">Category</label>
           <select
             name="category"
             value={form.category}
@@ -118,7 +118,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
 
       
         <div>
-          <label className="text-sm text-gray-600">Images</label>
+          <label className="block text-sm text-gray-600">Images</label>
           <input
             type="file"
             accept="image/*"

@@ -40,7 +40,7 @@ export default function CategoryForm({ category, onClose, onSaved }) {
         </h2>
 
         <div>
-          <label className="text-sm text-gray-600">Name</label>
+          <label className=" block text-sm text-gray-600">Name</label>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -50,7 +50,7 @@ export default function CategoryForm({ category, onClose, onSaved }) {
         </div>
 
         <div>
-          <label className="text-sm text-gray-600">Description</label>
+          <label className="block text-sm text-gray-600">Description</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
