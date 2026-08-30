@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import Profile from "./pages/Profile";
+import Layout from "./components/Layout";
 const App = () => {
   return (
     <CartProvider>
