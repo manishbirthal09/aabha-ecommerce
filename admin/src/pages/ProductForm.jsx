@@ -10,6 +10,9 @@ export default function ProductForm({ product, onClose, onSaved }) {
     discountPrice: product?.discountPrice || "",
     stock: product?.stock || "",
     category: product?.category?._id || "",
+    sizes: product?.sizes?.join(", ") || "",
+  scents: product?.scents?.join(", ") || "",
+  colors: product?.colors?.map((c) => `${c.name}:${c.hex}`).join(", ") || "",
     
   });
   const [images, setImages] = useState([]);
@@ -139,7 +142,38 @@ export default function ProductForm({ product, onClose, onSaved }) {
             className="w-4/5 mx-auto sm:w-full sm:mx-0 text-sm mt-1"
           />
         </div>
+<div>
+  <label className="block text-sm text-gray-600">Sizes (comma-separated)</label>
+  <input
+    name="sizes"
+    value={form.sizes}
+    onChange={handleChange}
+    placeholder="Large, Small"
+    className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
+  />
+</div>
 
+<div>
+  <label className="block text-sm text-gray-600">Scents (comma-separated)</label>
+  <input
+    name="scents"
+    value={form.scents}
+    onChange={handleChange}
+    placeholder="Honey Almond, Lavender, Jasmine"
+    className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
+  />
+</div>
+
+<div>
+  <label className="block text-sm text-gray-600">Colors (name:hex, comma-separated)</label>
+  <input
+    name="colors"
+    value={form.colors}
+    onChange={handleChange}
+    placeholder="Blue:#0000FF, Pink:#FFC0CB, Red:#FF0000"
+    className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
+  />
+</div>
 
 <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-2">
   <button type="button" onClick={onClose} className="w-4/5 mx-auto sm:w-auto sm:mx-0 px-4 py-2 text-sm border rounded-md">

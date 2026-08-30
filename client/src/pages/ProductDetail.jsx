@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
 import { useCart } from "../context/CartContext";
-import Accordion from "../components/Accordion";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -12,7 +11,9 @@ export default function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState(0);
-  const [selectedVariant, setSelectedVariant] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedScent, setSelectedScent] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [adding, setAdding] = useState(false);
 
@@ -21,7 +22,9 @@ export default function ProductDetail() {
     api.get(`/products/${id}`).then(({ data }) => {
       const p = data.product || data;
       setProduct(p);
-      if (p.variants?.length > 0) setSelectedVariant(p.variants[0]);
+      if (p.sizes?.length > 0) setSelectedSize(p.sizes[0]);
+      if (p.scents?.length > 0) setSelectedScent(p.scents[0]);
+      if (p.colors?.length > 0) setSelectedColor(p.colors[0].name);
       setActiveImage(0);
       setLoading(false);
     });
@@ -41,35 +44,38 @@ export default function ProductDetail() {
   }
 
   const images = product.images?.length > 0 ? product.images : [{ url: "/placeholder.jpg" }];
-  const basePrice = product.price;
-  const displayPrice =
-    product.discountPrice ??
-    (selectedVariant ? basePrice + (selectedVariant.priceModifier || 0) : basePrice);
+  const displayPrice = product.discountPrice ?? product.price;
   const hasDiscount = product.discountPrice && product.discountPrice < product.price;
-const discountPercent = hasDiscount
-  ? Math.round(((product.price - product.discountPrice) / product.price) * 100)
-  : 0;
+  const discountPercent = hasDiscount
+    ? Math.round(((product.price - product.discountPrice) / product.price) * 100)
+    : 0;
   const isOutOfStock = product.stock === 0;
-const isLowStock = product.stock > 0 && product.stock <= 5;
-  const handleAddToCart = async () => {
-    setAdding(true);
-    await addToCart(product._id, quantity);
-    setAdding(false);
-  };
+  const isLowStock = product.stock > 0 && product.stock <= 5;
 
-  const handleBuyNow = async () => {
-    setAdding(true);
-    await addToCart(product._id, quantity);
-    setAdding(false);
-    navigate("/checkout");
-  };
+  const buildSelection = () => ({
+    size: selectedSize,
+    scent: selectedScent,
+    color: selectedColor,
+  });
+
+ const handleAddToCart = async () => {
+  setAdding(true);
+  await addToCart(product._id, quantity);
+  setAdding(false);
+};
+
+const handleBuyNow = async () => {
+  setAdding(true);
+  await addToCart(product._id, quantity);
+  setAdding(false);
+  navigate("/checkout");
+};
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
       <div className="grid md:grid-cols-2 gap-10">
-        
         <div>
-          <div className="aspect-4/5  overflow-hidden bg-gray-100 mb-3">
+          <div className="aspect-4/5 overflow-hidden bg-gray-100 mb-3">
             <img
               src={images[activeImage]?.url || images[activeImage]}
               alt={product.name}
@@ -93,19 +99,20 @@ const isLowStock = product.stock > 0 && product.stock <= 5;
           )}
         </div>
 
-        
         <div>
           <h1 className="text-2xl font-serif text-charcoal mb-2">{product.name}</h1>
+
           {isOutOfStock && (
-  <span className="inline-block bg-gray-800 text-white text-xs px-2 py-1 rounded mb-2">
-    Out of Stock
-  </span>
-)}
-{!isOutOfStock && isLowStock && (
-  <span className="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded mb-2">
-    Only {product.stock} left
-  </span>
-)}
+            <span className="inline-block bg-gray-800 text-white text-xs px-2 py-1 rounded mb-2">
+              Out of Stock
+            </span>
+          )}
+          {!isOutOfStock && isLowStock && (
+            <span className="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded mb-2">
+              Only {product.stock} left
+            </span>
+          )}
+
           {product.category?.name && (
             <p className="text-sm text-gray-500 mb-4">{product.category.name}</p>
           )}
@@ -116,42 +123,84 @@ const isLowStock = product.stock > 0 && product.stock <= 5;
             </span>
             {hasDiscount && (
               <>
-              <span className="text-sm text-gray-400 line-through">
-                ₹{product.price.toLocaleString("en-IN")}
-              </span>
-              <span className="text-sm font-medium text-green-600">
-        {discountPercent}% off
-      </span>
-                </>
+                <span className="text-sm text-gray-400 line-through">
+                  ₹{product.price.toLocaleString("en-IN")}
+                </span>
+                <span className="text-sm font-medium text-green-600">
+                  {discountPercent}% off
+                </span>
+              </>
             )}
           </div>
 
           <p className="text-sm text-gray-600 mb-6 leading-relaxed">{product.description}</p>
 
-          
-          {product.variants?.length > 0 && (
+        
+          {product.sizes?.length > 0 && (
             <div className="mb-6">
-              <h3 className="text-sm font-medium text-charcoal mb-2">Color</h3>
+              <h3 className="text-sm font-medium text-charcoal mb-2">Size</h3>
               <div className="flex gap-2 flex-wrap">
-                {product.variants.map((v) => (
+                {product.sizes.map((s) => (
                   <button
-                    key={v._id}
-                    onClick={() => setSelectedVariant(v)}
-                    disabled={v.stock === 0}
-                    className={`px-4 py-2 rounded-md border text-sm ${
-                      selectedVariant?._id === v._id
+                    key={s}
+                    onClick={() => setSelectedSize(s)}
+                    className={`px-4 py-2 rounded-full border text-sm ${
+                      selectedSize === s
                         ? "border-charcoal bg-charcoal text-white"
                         : "border-gray-300 text-gray-700"
-                    } ${v.stock === 0 ? "opacity-40 cursor-not-allowed" : ""}`}
+                    }`}
                   >
-                    {v.value}
+                    {s}
                   </button>
                 ))}
               </div>
             </div>
           )}
 
-         
+          
+          {product.scents?.length > 0 && (
+            <div className="mb-6">
+              <h3 className="text-sm font-medium text-charcoal mb-2">Scent</h3>
+              <div className="flex gap-2 flex-wrap">
+                {product.scents.map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => setSelectedScent(s)}
+                    className={`px-4 py-2 rounded-full border text-sm ${
+                      selectedScent === s
+                        ? "border-charcoal bg-charcoal text-white"
+                        : "border-gray-300 text-gray-700"
+                    }`}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+      
+          {product.colors?.length > 0 && (
+            <div className="mb-6">
+              <h3 className="text-sm font-medium text-charcoal mb-2">
+                Color{selectedColor ? `: ${selectedColor}` : ""}
+              </h3>
+              <div className="flex gap-3 flex-wrap">
+                {product.colors.map((c) => (
+                  <button
+                    key={c.name}
+                    onClick={() => setSelectedColor(c.name)}
+                    title={c.name}
+                    className={`w-9 h-9 rounded-full border-2 ${
+                      selectedColor === c.name ? "border-charcoal" : "border-transparent"
+                    }`}
+                    style={{ backgroundColor: c.hex }}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="mb-8">
             <h3 className="text-sm font-medium text-charcoal mb-2">Quantity</h3>
             <div className="flex items-center gap-3">
@@ -165,7 +214,7 @@ const isLowStock = product.stock > 0 && product.stock <= 5;
               <button
                 onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}
                 disabled={quantity >= product.stock}
-                className="w-8 h-8 border border-gray-300 rounded"
+                className="w-8 h-8 border border-gray-300 rounded disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 +
               </button>
@@ -176,23 +225,21 @@ const isLowStock = product.stock > 0 && product.stock <= 5;
             <button
               onClick={handleAddToCart}
               disabled={adding || isOutOfStock}
-              className="flex-1 border border-charcoal text-charcoal py-3  text-sm font-medium hover:bg-charcoal hover:text-white transition disabled:opacity-50"
+              className="flex-1 border border-charcoal text-charcoal py-3 text-sm font-medium hover:bg-charcoal hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isOutOfStock ? "Out of Stock" : "Add to Cart"}
-            
             </button>
             <button
               onClick={handleBuyNow}
               disabled={adding || isOutOfStock}
-              className="flex-1 bg-charcoal text-white py-3  text-sm font-medium hover:opacity-90 transition disabled:opacity-50"
+              className="flex-1 bg-charcoal text-white py-3 text-sm font-medium hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isOutOfStock ? "Out of Stock" : "Buy Now"}
             </button>
           </div>
-          
 
-<div className="mt-8">
-  <Accordion title="Good to Know">
+          <div className="mt-8">
+           <Accordion title="Good to Know">
     <h4 className="font-semibold text-charcoal">Beautifully One of a Kind</h4>
     <p>
       We put real care into our product photography to make sure that every
@@ -226,7 +273,7 @@ const isLowStock = product.stock > 0 && product.stock <= 5;
       <li>Too pretty to burn? Just enjoy it as a beautiful decor!</li>
     </ul>
   </Accordion>
-</div>
+          </div>
         </div>
       </div>
     </div>

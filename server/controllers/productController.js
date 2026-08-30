@@ -41,7 +41,7 @@ export const getProductById = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, discountPrice, category, fabric, color, description, stock } = req.body;
+    const { name, price, discountPrice, category,  description, stock, sizes, scents, colors  } = req.body;
     const images = req.files ? req.files.map((file) => file.path) : [];
 
     const product = await Product.create({
@@ -49,11 +49,17 @@ export const createProduct = async (req, res) => {
       price,
       discountPrice,
       category,
-      fabric,
-      color,
       description,
       stock,
       images,
+      sizes: sizes ? sizes.split(",").map((s) => s.trim()).filter(Boolean) : [],
+      scents: scents ? scents.split(",").map((s) => s.trim()).filter(Boolean) : [],
+      colors: colors
+        ? colors.split(",").map((c) => {
+            const [name, hex] = c.split(":").map((x) => x.trim());
+            return { name, hex: hex || "#000000" };
+          }).filter((c) => c.name)
+        : [],
     });
 
     res.status(201).json(product);
@@ -64,9 +70,21 @@ export const createProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
   try {
-    const updates = req.body;
+    const updates = { ...req.body };
     if (req.files && req.files.length > 0) {
       updates.images = req.files.map((file) => file.path);
+    }
+    if (updates.sizes !== undefined) {
+      updates.sizes = updates.sizes.split(",").map((s) => s.trim()).filter(Boolean);
+    }
+    if (updates.scents !== undefined) {
+      updates.scents = updates.scents.split(",").map((s) => s.trim()).filter(Boolean);
+    }
+    if (updates.colors !== undefined) {
+      updates.colors = updates.colors.split(",").map((c) => {
+        const [name, hex] = c.split(":").map((x) => x.trim());
+        return { name, hex: hex || "#000000" };
+      }).filter((c) => c.name);
     }
     const product = await Product.findByIdAndUpdate(req.params.id, updates, { new: true });
     res.json(product);
