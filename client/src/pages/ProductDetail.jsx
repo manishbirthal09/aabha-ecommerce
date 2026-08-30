@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
 import { useCart } from "../context/CartContext";
+import Accordion from "../components/Accordion";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -188,6 +189,44 @@ const isLowStock = product.stock > 0 && product.stock <= 5;
               {isOutOfStock ? "Out of Stock" : "Buy Now"}
             </button>
           </div>
+          
+
+<div className="mt-8">
+  <Accordion title="Good to Know">
+    <h4 className="font-semibold text-charcoal">Beautifully One of a Kind</h4>
+    <p>
+      We put real care into our product photography to make sure that every
+      image on our website is captured with the intention of showing you
+      exactly what you'll receive.
+    </p>
+    <p>
+      Each candle is lovingly handcrafted. However, colours may appear
+      slightly different depending on your screen and photography lighting.
+    </p>
+    <p>Your piece will always be just as beautiful in person.</p>
+  </Accordion>
+
+  <Accordion title="Care & Maintenance">
+    <p>
+      Each piece is crafted to last and pretty things deserve to be taken
+      care of. We encourage you to refer to the care instructions included
+      with each item, designed to help you have a good experience with your
+      purchase. Your candle will thank you!
+    </p>
+    <h4 className="font-semibold text-charcoal">How to Care for Your Candle</h4>
+    <ul className="list-disc pl-5 space-y-1">
+      <li>Always place sculptural candles on a heat-resistant tray to catch any wax drips.</li>
+      <li>Trim the wick to 1/4" before lighting.</li>
+      <li>For Sculptural candles, burn in short sessions of 30 mins – 2 hours.</li>
+      <li>For Jar Candles, burn for at least 2 hours on the first use, then never more than 4 hours at once.</li>
+      <li>Keep away from children and pets when lit.</li>
+      <li>Burn on a stable, heat-safe surface, away from flammable objects.</li>
+      <li>To prevent tunneling in Jar candles, allow the wax to melt to the edge of the vessel.</li>
+      <li>Stop use when only 1/4 of wax remains.</li>
+      <li>Too pretty to burn? Just enjoy it as a beautiful decor!</li>
+    </ul>
+  </Accordion>
+</div>
         </div>
       </div>
     </div>
