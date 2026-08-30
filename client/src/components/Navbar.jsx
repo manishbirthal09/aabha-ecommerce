@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Heart, User, ShoppingBag, Menu, X } from 'lucide-react';
+import {   User, ShoppingBag, Menu, X } from 'lucide-react';
 
 const navLinks = [
   { label: 'Shop All', to: '/shop' },
@@ -16,7 +16,7 @@ const Navbar = () => {
     <header className="bg-background border-b border-secondary sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-11 md:h-15">
         
-        {/* Mobile menu toggle */}
+        
         <button
           className="md:hidden text-charcoal"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -24,7 +24,6 @@ const Navbar = () => {
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
 
-        {/* Logo */}
         <img
         src="/images/aalogo.png"
         alt="Handpoured candle"
@@ -32,7 +31,7 @@ const Navbar = () => {
       />
        
 
-        {/* Desktop nav links */}
+        
         <nav className="hidden md:flex items-center gap-8 font-body text-sm text-charcoal">
           {navLinks.map((link) => (
             <Link
@@ -45,14 +44,9 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {/* Icons */}
+        
         <div className="flex items-center gap-4 text-charcoal">
-          <button className="hidden sm:block hover:opacity-60 transition-opacity">
-            <Search size={20} />
-          </button>
-          <button className="hidden sm:block hover:opacity-60 transition-opacity">
-            <Heart size={20} />
-          </button>
+          
           <Link to="/profile" className="hover:opacity-60 transition-opacity">
             <User size={20} />
           </Link>
@@ -65,7 +59,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu dropdown */}
+     
       {menuOpen && (
         <nav className="md:hidden flex flex-col gap-4 px-6 pb-6 font-body text-sm text-charcoal bg-background">
           {navLinks.map((link) => (
