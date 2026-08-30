@@ -7,6 +7,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
     name: product?.name || "",
     description: product?.description || "",
     price: product?.price || "",
+    discountPrice: product?.discountPrice || "",
     stock: product?.stock || "",
     category: product?.category?._id || "",
     
@@ -80,6 +81,17 @@ export default function ProductForm({ product, onClose, onSaved }) {
               name="price"
               type="number"
               value={form.price}
+              onChange={handleChange}
+              required
+              className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
+            />
+          </div>
+          <div>
+            <label className="block text-sm text-gray-600">Discount Price</label>
+            <input
+              name="discountPrice"
+              type="number"
+              value={form.discountPrice}
               onChange={handleChange}
               required
               className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
