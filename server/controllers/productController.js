@@ -41,12 +41,13 @@ export const getProductById = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, category, fabric, color, description, stock } = req.body;
+    const { name, price, discountPrice, category, fabric, color, description, stock } = req.body;
     const images = req.files ? req.files.map((file) => file.path) : [];
 
     const product = await Product.create({
       name,
       price,
+      discountPrice,
       category,
       fabric,
       color,
