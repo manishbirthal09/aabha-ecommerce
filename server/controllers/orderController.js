@@ -1,6 +1,6 @@
 import Order from "../models/Order.js";
 import { sendOrderNotification }  from "../utils/emailNotifier.js";  
-
+import Product from "../models/Product.js";
 
 export const createOrder = async (req, res) => {
   try {
