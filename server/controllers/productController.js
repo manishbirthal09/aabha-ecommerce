@@ -76,10 +76,7 @@ export const updateProduct = async (req, res) => {
       updates.scents = updates.scents.split(",").map((s) => s.trim()).filter(Boolean);
     }
     if (updates.colors !== undefined) {
-      updates.colors = updates.colors.split(",").map((c) => {
-        const [name, hex] = c.split(":").map((x) => x.trim());
-        return { name, hex: hex || "#000000" };
-      }).filter((c) => c.name);
+      updates.colors = updates.colors.split(",").map((c) =>  c.trim()).filter(Boolean);
     }
     const product = await Product.findByIdAndUpdate(req.params.id, updates, { new: true });
     res.json(product);
