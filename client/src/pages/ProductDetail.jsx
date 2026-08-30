@@ -45,7 +45,9 @@ export default function ProductDetail() {
     product.discountPrice ??
     (selectedVariant ? basePrice + (selectedVariant.priceModifier || 0) : basePrice);
   const hasDiscount = product.discountPrice && product.discountPrice < product.price;
-
+const discountPercent = hasDiscount
+  ? Math.round(((product.price - product.discountPrice) / product.price) * 100)
+  : 0;
   const handleAddToCart = async () => {
     setAdding(true);
     await addToCart(product._id, quantity);
@@ -62,7 +64,7 @@ export default function ProductDetail() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
       <div className="grid md:grid-cols-2 gap-10">
-        {/* Images */}
+        
         <div>
           <div className="aspect-4/5  overflow-hidden bg-gray-100 mb-3">
             <img
@@ -88,7 +90,7 @@ export default function ProductDetail() {
           )}
         </div>
 
-        {/* Details */}
+        
         <div>
           <h1 className="text-2xl font-serif text-charcoal mb-2">{product.name}</h1>
           {product.category?.name && (
@@ -100,15 +102,20 @@ export default function ProductDetail() {
               ₹{displayPrice.toLocaleString("en-IN")}
             </span>
             {hasDiscount && (
+              <>
               <span className="text-sm text-gray-400 line-through">
                 ₹{product.price.toLocaleString("en-IN")}
               </span>
+              <span className="text-sm font-medium text-green-600">
+        {discountPercent}% off
+      </span>
+                </>
             )}
           </div>
 
           <p className="text-sm text-gray-600 mb-6 leading-relaxed">{product.description}</p>
 
-          {/* Variants (color) */}
+          
           {product.variants?.length > 0 && (
             <div className="mb-6">
               <h3 className="text-sm font-medium text-charcoal mb-2">Color</h3>
@@ -131,7 +138,7 @@ export default function ProductDetail() {
             </div>
           )}
 
-          {/* Quantity */}
+         
           <div className="mb-8">
             <h3 className="text-sm font-medium text-charcoal mb-2">Quantity</h3>
             <div className="flex items-center gap-3">
