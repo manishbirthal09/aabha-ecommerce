@@ -54,12 +54,7 @@ export const createProduct = async (req, res) => {
       images,
       sizes: sizes ? sizes.split(",").map((s) => s.trim()).filter(Boolean) : [],
       scents: scents ? scents.split(",").map((s) => s.trim()).filter(Boolean) : [],
-      colors: colors
-        ? colors.split(",").map((c) => {
-            const [name, hex] = c.split(":").map((x) => x.trim());
-            return { name, hex: hex || "#000000" };
-          }).filter((c) => c.name)
-        : [],
+      colors: colors ? colors.split(",").map((c) => c.trim()).filter(Boolean) : [],
     });
 
     res.status(201).json(product);

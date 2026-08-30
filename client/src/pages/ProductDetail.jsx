@@ -24,7 +24,7 @@ export default function ProductDetail() {
       setProduct(p);
       if (p.sizes?.length > 0) setSelectedSize(p.sizes[0]);
       if (p.scents?.length > 0) setSelectedScent(p.scents[0]);
-      if (p.colors?.length > 0) setSelectedColor(p.colors[0].name);
+      if (p.colors?.length > 0) setSelectedColor(p.colors[0]);
       setActiveImage(0);
       setLoading(false);
     });
@@ -188,13 +188,13 @@ const handleBuyNow = async () => {
               <div className="flex gap-3 flex-wrap">
                 {product.colors.map((c) => (
                   <button
-                    key={c.name}
-                    onClick={() => setSelectedColor(c.name)}
-                    title={c.name}
+                    key={c}
+                    onClick={() => setSelectedColor(c)}
+                    title={c}
                     className={`w-9 h-9 rounded-full border-2 ${
-                      selectedColor === c.name ? "border-charcoal" : "border-transparent"
+                      selectedColor === c ? "border-charcoal" : "border-transparent"
                     }`}
-                    style={{ backgroundColor: c.hex }}
+                    style={{ backgroundColor: c.toLowerCase() }}
                   />
                 ))}
               </div>

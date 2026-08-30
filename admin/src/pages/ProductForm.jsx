@@ -12,7 +12,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
     category: product?.category?._id || "",
     sizes: product?.sizes?.join(", ") || "",
   scents: product?.scents?.join(", ") || "",
-  colors: product?.colors?.map((c) => `${c.name}:${c.hex}`).join(", ") || "",
+  colors: product?.colors?.join(", ") || "",
     
   });
   const [images, setImages] = useState([]);
@@ -165,12 +165,12 @@ export default function ProductForm({ product, onClose, onSaved }) {
 </div>
 
 <div>
-  <label className="block text-sm text-gray-600">Colors (name:hex, comma-separated)</label>
+  <label className="block text-sm text-gray-600">Colors ( comma-separated)</label>
   <input
     name="colors"
     value={form.colors}
     onChange={handleChange}
-    placeholder="Blue:#0000FF, Pink:#FFC0CB, Red:#FF0000"
+    placeholder="Blue, Pink, Red"
     className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
   />
 </div>

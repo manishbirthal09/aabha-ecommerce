@@ -17,8 +17,8 @@ const productSchema = new mongoose.Schema(
     scents: [{ type: String }],
     colors: [
       {
-        name: { type: String },
-        hex: { type: String },
+        type: String
+       
       },
     ],
   },
