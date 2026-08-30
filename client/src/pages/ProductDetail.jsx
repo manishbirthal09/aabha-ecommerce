@@ -48,6 +48,8 @@ export default function ProductDetail() {
 const discountPercent = hasDiscount
   ? Math.round(((product.price - product.discountPrice) / product.price) * 100)
   : 0;
+  const isOutOfStock = product.stock === 0;
+const isLowStock = product.stock > 0 && product.stock <= 5;
   const handleAddToCart = async () => {
     setAdding(true);
     await addToCart(product._id, quantity);
@@ -93,6 +95,16 @@ const discountPercent = hasDiscount
         
         <div>
           <h1 className="text-2xl font-serif text-charcoal mb-2">{product.name}</h1>
+          {isOutOfStock && (
+  <span className="inline-block bg-gray-800 text-white text-xs px-2 py-1 rounded mb-2">
+    Out of Stock
+  </span>
+)}
+{!isOutOfStock && isLowStock && (
+  <span className="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded mb-2">
+    Only {product.stock} left
+  </span>
+)}
           {product.category?.name && (
             <p className="text-sm text-gray-500 mb-4">{product.category.name}</p>
           )}
@@ -150,7 +162,8 @@ const discountPercent = hasDiscount
               </button>
               <span className="w-8 text-center">{quantity}</span>
               <button
-                onClick={() => setQuantity((q) => q + 1)}
+                onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}
+                disabled={quantity >= product.stock}
                 className="w-8 h-8 border border-gray-300 rounded"
               >
                 +
@@ -161,17 +174,18 @@ const discountPercent = hasDiscount
           <div className="flex gap-3">
             <button
               onClick={handleAddToCart}
-              disabled={adding}
+              disabled={adding || isOutOfStock}
               className="flex-1 border border-charcoal text-charcoal py-3  text-sm font-medium hover:bg-charcoal hover:text-white transition disabled:opacity-50"
             >
-              Add to Cart
+              {isOutOfStock ? "Out of Stock" : "Add to Cart"}
+            
             </button>
             <button
               onClick={handleBuyNow}
-              disabled={adding}
+              disabled={adding || isOutOfStock}
               className="flex-1 bg-charcoal text-white py-3  text-sm font-medium hover:opacity-90 transition disabled:opacity-50"
             >
-              Buy Now
+              {isOutOfStock ? "Out of Stock" : "Buy Now"}
             </button>
           </div>
         </div>

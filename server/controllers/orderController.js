@@ -1,11 +1,27 @@
 import Order from "../models/Order.js";
 import { sendOrderNotification }  from "../utils/emailNotifier.js";  
 
-// POST /api/orders
+
 export const createOrder = async (req, res) => {
   try {
     const { items, totalAmount, customer, paymentMethod } = req.body;
+     for (const item of items) {
+      const product = await Product.findById(item.product);
+      if (!product) {
+        return res.status(404).json({ message: `Product not found: ${item.name}` });
+      }
+      if (product.stock < item.quantity) {
+        return res.status(400).json({
+          message: `${product.name} is out of stock (only ${product.stock} left)`,
+        });
+      }
+    }
     const order = await Order.create({customerRef: req.customer.id, items, totalAmount, customer, paymentMethod });
+    for (const item of items) {
+      await Product.findByIdAndUpdate(item.product, {
+        $inc: { stock: -item.quantity },
+      });
+    }
     res.status(201).json(order);
     sendOrderNotification(order);
   } catch (err) {
@@ -13,7 +29,7 @@ export const createOrder = async (req, res) => {
   }
 };
 
-// GET /api/orders  (admin only)
+
 export const getOrders = async (req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 });
@@ -23,7 +39,7 @@ export const getOrders = async (req, res) => {
   }
 };
 
-// GET /api/orders/:id
+
 export const getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
@@ -34,7 +50,7 @@ export const getOrderById = async (req, res) => {
   }
 };
 
-// PUT /api/orders/:id/status  (admin only)
+
 export const updateOrderStatus = async (req, res) => {
   try {
     const { status } = req.body;
@@ -45,7 +61,7 @@ export const updateOrderStatus = async (req, res) => {
   }
 };
 
-// GET /api/orders/my-orders  (customer only)
+
 export const getMyOrders = async (req, res) => {
   try {
     const orders = await Order.find({ customerRef: req.customer.id }).sort({ createdAt: -1 });

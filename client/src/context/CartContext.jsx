@@ -28,10 +28,7 @@ export function CartProvider({ children }) {
   useEffect(() => {
     fetchCart();
   }, [fetchCart]);
-// const addToCart = async (productId, quantity = 1) => {
-//   const { data } = await api.post(`/cart/${cartId}/add`, { product: productId, quantity });
-//   setCart(data);
-// };
+
   const addToCart = async (productId, quantity = 1) => {
     const { data } = await api.post(`/cart/${cartId}/add`, { productId, quantity });
     setCart(data);
