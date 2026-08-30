@@ -18,6 +18,7 @@ const App = () => {
       <CustomerAuthProvider>
     
         <Routes>
+          <Route path="/" element={<Layout />}>
  <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetail />} />
@@ -27,7 +28,7 @@ const App = () => {
             <Route path="/checkout" element={<Checkout />} />      
             <Route path="/order-success/:orderId" element={<OrderSuccess />} />
              <Route path="/profile" element={<Profile />} />
-            
+            </Route>
         </Routes>
         
       </CustomerAuthProvider>

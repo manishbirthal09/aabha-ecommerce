@@ -22,7 +22,7 @@ const Home = () => {
       
       <InstagramSection />
       
-      <Footer />
+      
     </div>
   )
 }
