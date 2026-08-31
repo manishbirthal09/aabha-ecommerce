@@ -11,7 +11,7 @@ const TrendingNow = () => {
   useEffect(() => {
     const fetchTrending = async () => {
       try {
-        const { data } = await api.get('/products');
+        const { data } = await api.get('/products', { params: { limit: 8 } });
         console.log('products response:', data); 
         setTrendingProducts(data.products);
       } catch (err) {
