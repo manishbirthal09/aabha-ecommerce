@@ -23,13 +23,13 @@ const Navbar = () => {
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
-
+<Link to="/">
         <img
         src="/images/aalogo.png"
         alt="Handpoured candle"
         className="h-20 md:h-25 w-auto object-contain"
       />
-       
+      </Link> 
 
         
         <nav className="hidden md:flex items-center gap-8 font-body text-sm text-charcoal">
