@@ -13,13 +13,14 @@ export default function ProductCard({ product }) {
     e.preventDefault();
     if (isOutOfStock) return;
     await addToCart(product._id, 1);
+    navigate("/cart");
   };
 
   const handleBuyNow = async (e) => {
     e.preventDefault();
     if (isOutOfStock) return;
     await addToCart(product._id, 1);
-    navigate("/checkout");
+    navigate(`/products/${product._id}`);
   };
 
   return (
