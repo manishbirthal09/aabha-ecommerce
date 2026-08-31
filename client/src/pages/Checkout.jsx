@@ -203,16 +203,7 @@ if (!isAuthenticated) {
 <div className="mb-2">
   <h3 className="text-sm font-medium text-charcoal mb-3">Payment Method</h3>
   <div className="space-y-2">
-    <label className="flex items-center gap-3 border rounded-md px-4 py-3 cursor-pointer">
-      <input
-        type="radio"
-        name="paymentMethod"
-        value="cod"
-        checked={paymentMethod === "cod"}
-        onChange={(e) => setPaymentMethod(e.target.value)}
-      />
-      <span className="text-sm">Cash on Delivery</span>
-    </label>
+   
     <label className="flex items-center gap-3 border rounded-md px-4 py-3 cursor-pointer">
       <input
         type="radio"
@@ -234,9 +225,9 @@ if (!isAuthenticated) {
         >
          {placing
   ? "Processing..."
-  : paymentMethod === "razorpay"
-  ? "Proceed to Pay"
-  : "Place Order (Cash on Delivery)"}
+  
+  : "Proceed to Pay"
+  }
         </button>
       </form>
     </div>
