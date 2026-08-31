@@ -52,9 +52,12 @@ const Navbar = () => {
           </Link>
           <Link to="/cart" className="relative hover:opacity-60 transition-opacity">
             <ShoppingBag size={20} />
+
+            {itemCount > 0 && (
             <span className="absolute -top-2 -right-2 bg-primary text-charcoal text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
-              0
+              {itemCount}
             </span>
+          )}
           </Link>
         </div>
       </div>

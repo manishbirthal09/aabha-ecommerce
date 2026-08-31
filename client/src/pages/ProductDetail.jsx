@@ -76,7 +76,7 @@ const handleBuyNow = async () => {
     <div className="max-w-6xl mx-auto px-6 py-10">
       <div className="grid md:grid-cols-2 gap-10">
         <div>
-          <div className="aspect-4/5 overflow-hidden bg-gray-100 mb-3">
+          <div className="aspect-[4/5] overflow-hidden bg-gray-100 mb-3">
             <img
               src={images[activeImage]?.url || images[activeImage]}
               alt={product.name}

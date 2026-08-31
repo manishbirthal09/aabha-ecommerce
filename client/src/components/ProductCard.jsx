@@ -26,7 +26,7 @@ export default function ProductCard({ product }) {
   return (
     <div className="group">
       <Link to={`/products/${product._id}`}>
-        <div className="relative aspect-4/5.5 overflow-hidden bg-brand-border">
+        <div className="relative aspect-[4/5.5] overflow-hidden bg-brand-border">
           <img
             src={imageUrl}
             alt={product.name}
@@ -47,7 +47,7 @@ export default function ProductCard({ product }) {
         </div>
       </Link>
       <div className="pt-3">
-        <h3 className="font-serif text-base text-brand-text">{product.name}</h3>
+        <h3 className="font-serif text-base text-brand-text line-clamp-2 min-h-12">{product.name}</h3>
 
         {(() => {
           const hasDiscount = product.discountPrice && product.discountPrice < product.price;
