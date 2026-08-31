@@ -52,6 +52,7 @@ if (!isAuthenticated) {
       name: item.product.name,
       price: item.product.discountPrice || item.product.price,
       quantity: item.quantity,
+      selection: item.selection || {},
     }));
 
     const { data: order } = await api.post("/orders", {

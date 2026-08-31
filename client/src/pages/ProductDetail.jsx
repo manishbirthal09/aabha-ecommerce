@@ -61,13 +61,13 @@ export default function ProductDetail() {
 
  const handleAddToCart = async () => {
   setAdding(true);
-  await addToCart(product._id, quantity);
+  await addToCart(product._id, quantity, buildSelection());
   setAdding(false);
 };
 
 const handleBuyNow = async () => {
   setAdding(true);
-  await addToCart(product._id, quantity);
+  await addToCart(product._id, quantity, buildSelection());
   setAdding(false);
   navigate("/checkout");
 };

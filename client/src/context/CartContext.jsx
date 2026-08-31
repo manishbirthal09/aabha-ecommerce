@@ -29,8 +29,8 @@ export function CartProvider({ children }) {
     fetchCart();
   }, [fetchCart]);
 
-  const addToCart = async (productId, quantity = 1) => {
-    const { data } = await api.post(`/cart/${cartId}/add`, { productId, quantity });
+  const addToCart = async (productId, quantity = 1, selection = {}) => {
+    const { data } = await api.post(`/cart/${cartId}/add`, { productId, quantity, selection });
     setCart(data);
   };
 

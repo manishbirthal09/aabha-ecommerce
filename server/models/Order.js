@@ -5,6 +5,11 @@ const orderItemSchema = new mongoose.Schema({
   name: String,
   price: Number,
   quantity: Number,
+  selection: {
+    size: String,
+    scent: String,
+    color: String,
+  },
 });
 
 const orderSchema = new mongoose.Schema(

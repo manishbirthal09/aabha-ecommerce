@@ -132,9 +132,22 @@ export default function Orders() {
                           <div>
                             <h3 className="font-medium mb-2">Items</h3>
                             {order.items.map((item, i) => (
-                              <p key={i} className="text-gray-600">
-                                {item.name} × {item.quantity} — ₹{item.price}
-                              </p>
+                               <div key={i} className="text-gray-600 mb-2">
+      <p>
+        {item.name} × {item.quantity} — ₹{item.price}
+      </p>
+      {(item.selection?.size || item.selection?.scent || item.selection?.color) && (
+        <p className="text-xs text-gray-500">
+          {[
+            item.selection?.size && `Size: ${item.selection.size}`,
+            item.selection?.scent && `Scent: ${item.selection.scent}`,
+            item.selection?.color && `Color: ${item.selection.color}`,
+          ]
+            .filter(Boolean)
+            .join(" · ")}
+        </p>
+      )}
+    </div>
                             ))}
                           </div>
                         </div>

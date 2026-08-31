@@ -1,7 +1,7 @@
 import  Cart from "../models/Cart.js";
 import { v4 as uuidv4 } from "uuid";
 
-// GET /api/cart/:cartId
+
 export const getCart = async (req, res) => {
   try {
     let cart = await Cart.findOne({ cartId: req.params.cartId }).populate("items.product");
@@ -14,21 +14,27 @@ export const getCart = async (req, res) => {
   }
 };
 
-// POST /api/cart/:cartId/add
+
 export const addToCart = async (req, res) => {
   try {
-    const { productId, quantity = 1 } = req.body;
+    const { productId, quantity = 1, selection } = req.body;
     let cart = await Cart.findOne({ cartId: req.params.cartId });
 
     if (!cart) {
       cart = await Cart.create({ cartId: req.params.cartId, items: [] });
     }
 
-    const existingItem = cart.items.find((item) => item.product.toString() === productId);
+    
+    const existingItem = cart.items.find(
+      (item) =>
+        item.product.toString() === productId &&
+        JSON.stringify(item.selection || {}) === JSON.stringify(selection || {})
+    );
+
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
-      cart.items.push({ product: productId, quantity });
+      cart.items.push({ product: productId, quantity, selection: selection || {} });
     }
 
     await cart.save();
@@ -39,7 +45,8 @@ export const addToCart = async (req, res) => {
   }
 };
 
-// PUT /api/cart/:cartId/update
+
+
 export const updateCartItem = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
@@ -63,7 +70,7 @@ export const updateCartItem = async (req, res) => {
   }
 };
 
-// DELETE /api/cart/:cartId/remove/:productId
+
 export const removeFromCart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ cartId: req.params.cartId });
