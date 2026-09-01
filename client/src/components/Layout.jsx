@@ -9,8 +9,8 @@ export default function Layout() {
   return (
     <>
     {isHome && <AnnouncementBar />}
-      <Navbar />
-      <main className={isHome ? "pt-24 md:pt-28" : "pt-16 md:pt-20"}>
+      <Navbar />    
+      <main>
         <Outlet />
       </main>
       <Footer />

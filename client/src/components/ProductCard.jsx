@@ -57,7 +57,7 @@ export default function ProductCard({ product }) {
             : 0;
 
           return (
-            <div className="mt-1 flex items-center gap-2 flex-wrap">
+            <div className=" flex items-center gap-2 flex-wrap">
               {hasDiscount && (
                 <span className="text-xs text-gray-400 line-through">
                   ₹{product.price.toLocaleString("en-IN")}
