@@ -274,6 +274,20 @@ const handleBuyNow = async () => {
       <li>Too pretty to burn? Just enjoy it as a beautiful decor!</li>
     </ul>
   </Accordion>
+   <Accordion title="Return and Exchange">
+    <h4 className="font-semibold text-charcoal">Beautifully One of a Kind</h4>
+    <p>
+      Since each of our candle is made specially for  you in your chosen color and fragreance , we're unable to offer return or exchange.
+    </p>
+    <p>
+      We do accept replacement if:
+    </p>
+    <p>-Your candle arrives broken/damaged (please share an uncut opening video as proof).
+
+-You receive a wrong item by mistake.
+
+In such cases, just let us know within 2 days of delivery, and we'll happily make it right for you.</p>
+  </Accordion>
           </div>
         </div>
       </div>

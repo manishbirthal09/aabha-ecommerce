@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {   User, ShoppingBag, Menu, X } from 'lucide-react';
-
+import { useCart } from '../context/CartContext';
 const navLinks = [
-  { label: 'Shop All', to: '/shop' },
-  { label: 'Scented Candles', to: '/shop/scented' },
-  { label: 'Gift Sets', to: '/shop/gift-sets' },
-  { label: 'About', to: '/about' },
+  { label: 'Shop All', to: '/products' },
+  { label: 'Bulk Orders', to: 'https://wa.me/919142918584?text=Hi%2C%20I%27m%20interested%20in%20bulk%20orders', external: true },
+  { label: 'Instagram', to: 'https://instagram.com/aabha_bybhanupriya', external: true},
+  { label: 'contact us', to: '/footer' },
 ];
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+ const { itemCount } = useCart();
   return (
     <header className="bg-background border-b border-secondary sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-11 md:h-15">
