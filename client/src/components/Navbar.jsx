@@ -14,7 +14,7 @@ const Navbar = () => {
  const { itemCount } = useCart();
   return (
     <header className="bg-background border-b border-secondary sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between py-1 md:py-2">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-11 md:h-15">
         
         
         <button
