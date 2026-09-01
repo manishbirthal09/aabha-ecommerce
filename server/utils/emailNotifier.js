@@ -9,7 +9,7 @@ export const sendOrderNotification = async (order) => {
       .join("\n");
 
     await resend.emails.send({
-      from: "Aabha <orders@aabhabybhanupriya.com>",
+      from: "Aabha <orders@mail.aabhabybhanupriya.com>",
       to: process.env.ADMIN_ORDER_EMAIL,
       subject: `New Order Received — ₹${order.totalAmount}`,
       text: `
