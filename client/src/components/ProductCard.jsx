@@ -2,24 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 export default function ProductCard({ product }) {
-  const { addToCart } = useCart();
   const navigate = useNavigate();
   const imageUrl = product.images?.[0]?.url || product.images?.[0] || "/placeholder.jpg";
 
   const isOutOfStock = product.stock === 0;
   const isLowStock = product.stock > 0 && product.stock <= 5;
 
-  const handleAddToCart = async (e) => {
+  const handleViewProduct = (e) => {
     e.preventDefault();
-    if (isOutOfStock) return;
-    await addToCart(product._id, 1);
-    navigate("/cart");
-  };
-
-  const handleBuyNow = async (e) => {
-    e.preventDefault();
-    if (isOutOfStock) return;
-    await addToCart(product._id, 1);
     navigate(`/products/${product._id}`);
   };
 
@@ -57,7 +47,7 @@ export default function ProductCard({ product }) {
             : 0;
 
           return (
-            <div className=" flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-2 flex-wrap">
               {hasDiscount && (
                 <span className="text-xs text-gray-400 line-through">
                   ₹{product.price.toLocaleString("en-IN")}
@@ -75,22 +65,13 @@ export default function ProductCard({ product }) {
           );
         })()}
 
-        <div className="flex gap-2 mt-3 min-w-0">
+        <div className="mt-3">
           <button
             disabled={isOutOfStock}
-            className={`flex-1 min-w-0 whitespace-nowrap px-2 text-[10px] sm:text-xs border border-charcoal ${
+            className={`w-full px-2 py-2 text-xs sm:text-sm bg-charcoal text-white ${
               isOutOfStock ? "opacity-40 cursor-not-allowed" : ""
             }`}
-            onClick={handleAddToCart}
-          >
-            Add to Cart
-          </button>
-          <button
-            disabled={isOutOfStock}
-            className={`flex-1 min-w-0 whitespace-nowrap px-2 text-[10px] sm:text-xs bg-charcoal text-white ${
-              isOutOfStock ? "opacity-40 cursor-not-allowed" : ""
-            }`}
-            onClick={handleBuyNow}
+            onClick={handleViewProduct}
           >
             {isOutOfStock ? "Out of Stock" : "Buy Now"}
           </button>
