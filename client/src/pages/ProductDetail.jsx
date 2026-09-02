@@ -201,7 +201,27 @@ const handleBuyNow = async () => {
               </div>
             </div>
           )}
-
+{product.quantityPresets?.length > 0 && (
+  <div className="mb-6">
+    <h3 className="text-sm font-medium text-charcoal mb-2">Quantity</h3>
+    <div className="flex gap-2 flex-wrap">
+      {product.quantityPresets.map((q) => (
+        <button
+          key={q}
+          onClick={() => setQuantity(Math.min(q, product.stock))}
+          disabled={q > product.stock}
+          className={`px-4 py-2 rounded-full border text-sm ${
+            quantity === q
+              ? "border-charcoal bg-charcoal text-white"
+              : "border-gray-300 text-gray-700"
+          } ${q > product.stock ? "opacity-40 cursor-not-allowed" : ""}`}
+        >
+          {q === 1 ? "1 piece" : `${q} pieces`}
+        </button>
+      ))}
+    </div>
+  </div>
+)}
           <div className="mb-8">
             <h3 className="text-sm font-medium text-charcoal mb-2">Quantity</h3>
             <div className="flex items-center gap-3">
@@ -275,7 +295,7 @@ const handleBuyNow = async () => {
     </ul>
   </Accordion>
    <Accordion title="Return and Exchange">
-    <h4 className="font-semibold text-charcoal">Beautifully One of a Kind</h4>
+
     <p>
       Since each of our candle is made specially for  you in your chosen color and fragreance , we're unable to offer return or exchange.
     </p>

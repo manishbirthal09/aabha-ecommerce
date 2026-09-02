@@ -13,6 +13,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
     sizes: product?.sizes?.join(", ") || "",
   scents: product?.scents?.join(", ") || "",
   colors: product?.colors?.join(", ") || "",
+  quantityPresets: product?.quantityPresets?.join(", ") || "",
     
   });
   const [images, setImages] = useState([]);
@@ -174,7 +175,16 @@ export default function ProductForm({ product, onClose, onSaved }) {
     className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
   />
 </div>
-
+<div>
+  <label className="block text-sm text-gray-600">Quantity Presets (comma-separated numbers)</label>
+  <input
+    name="quantityPresets"
+    value={form.quantityPresets}
+    onChange={handleChange}
+    placeholder="1, 10, 30"
+    className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
+  />
+</div>
 <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-2">
   <button type="button" onClick={onClose} className="w-4/5 mx-auto sm:w-auto sm:mx-0 px-4 py-2 text-sm border rounded-md">
     Cancel
