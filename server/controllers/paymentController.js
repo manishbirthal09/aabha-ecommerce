@@ -40,7 +40,7 @@ export const verifyRazorpayPayment = async (req, res) => {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
-      orderId, // your internal order _id
+      orderId, 
     } = req.body;
 
         const generatedSignature = crypto

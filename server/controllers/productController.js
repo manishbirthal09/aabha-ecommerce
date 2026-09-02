@@ -41,7 +41,7 @@ export const getProductById = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, discountPrice, category,  description, stock, sizes, scents, colors  } = req.body;
+    const { name, price, discountPrice, category,  description, stock, sizes, scents, colors, quantityPresets } = req.body;
     const images = req.files ? req.files.map((file) => file.path) : [];
 
     const product = await Product.create({
@@ -55,6 +55,9 @@ export const createProduct = async (req, res) => {
       sizes: sizes ? sizes.split(",").map((s) => s.trim()).filter(Boolean) : [],
       scents: scents ? scents.split(",").map((s) => s.trim()).filter(Boolean) : [],
       colors: colors ? colors.split(",").map((c) => c.trim()).filter(Boolean) : [],
+      quantityPresets: quantityPresets
+    ? quantityPresets.split(",").map((q) => Number(q.trim())).filter((q) => q > 0)
+    : [],
     });
 
     res.status(201).json(product);
@@ -78,6 +81,12 @@ export const updateProduct = async (req, res) => {
     if (updates.colors !== undefined) {
       updates.colors = updates.colors.split(",").map((c) =>  c.trim()).filter(Boolean);
     }
+    if (updates.quantityPresets !== undefined) {
+  updates.quantityPresets = updates.quantityPresets
+    .split(",")
+    .map((q) => Number(q.trim()))
+    .filter((q) => q > 0);
+}
     const product = await Product.findByIdAndUpdate(req.params.id, updates, { new: true });
     res.json(product);
   } catch (err) {
