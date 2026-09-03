@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
 import { useCart } from "../context/CartContext";
 import Accordion from "../components/Accordion";
+import { Link } from "react-router-dom";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -307,6 +308,25 @@ const handleBuyNow = async () => {
 -You receive a wrong item by mistake.
 
 In such cases, just let us know within 2 days of delivery, and we'll happily make it right for you.</p>
+  </Accordion>
+   <Accordion title="General Information :">
+<ul className="list-disc pl-5 space-y-1">
+    <li>
+      Large quantity orders may require additional processing time
+    </li>
+    <li>
+      Premium photo messages and sticker messages can be added
+    </li>
+    <li>
+      As each piece is handcrafted, slight variations in color and texture may occur
+    </li>
+    <li>
+      For Hampers, Bulk or Custom orders,  <Link to="https://wa.me/919142918584?text=Hi%2C%20I%27m%20interested%20in%20bulk%20orders">Contact us</Link>
+    </li>
+    <li>
+      Unboxing video is mandatory to claim refund under any damage condition
+    </li>
+  </ul>
   </Accordion>
           </div>
         </div>
