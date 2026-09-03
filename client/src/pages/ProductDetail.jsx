@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
 import { useCart } from "../context/CartContext";
 import Accordion from "../components/Accordion";
-import { Link } from "react-router-dom";
+
 
 export default function ProductDetail() {
   const { id } = useParams();
