@@ -6,6 +6,8 @@ import {
   ShoppingBag,
   LogOut,
   X,
+  Percent,
+  Settings,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
@@ -14,6 +16,8 @@ const links = [
   { to: "/products", label: "Products", icon: Package },
   { to: "/categories", label: "Categories", icon: Tag },
   { to: "/orders", label: "Orders", icon: ShoppingBag },
+  { to: "/coupons", label: "Coupons", icon: Percent },
+  { to: "/settings", label: "Settings", icon: Settings },
 ];
 
 export default function Sidebar({ isOpen, setIsOpen }) {

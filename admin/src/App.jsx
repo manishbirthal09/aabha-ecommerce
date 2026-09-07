@@ -7,6 +7,9 @@ import Categories from "./pages/Categories";
 import AdminLayout from "./components/AdminLayout";
 import Orders from "./pages/Orders";
 import Dashboard from "./pages/Dashboard";
+import AdminCoupons from "./pages/AdminCoupons";
+
+import AdminSettings from "./pages/AdminSettings";
 
 
 export default function App() {
@@ -50,6 +53,26 @@ export default function App() {
     </ProtectedRoute>
   }
 />
+<Route
+            path="/coupons"
+            element={
+              <ProtectedRoute>
+                
+                <AdminCoupons />
+                
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                
+                <AdminSettings />
+                
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
