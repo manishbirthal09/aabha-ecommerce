@@ -48,6 +48,7 @@ export const createOrder = async (req, res) => {
       customerRef: req.customer.id,
       items: populatedItems.map((item) => ({
         product: item.product._id,
+        name: item.product.name,   
         quantity: item.quantity,
         price: item.product.discountPrice || item.product.price,
       })),

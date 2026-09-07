@@ -155,20 +155,7 @@ if (!isAuthenticated) {
     <div className="max-w-2xl mx-auto px-6 py-10">
       <h1 className="text-2xl font-serif mb-8 text-charcoal">Checkout</h1>
 
-      {/* <div className="bg-gray-50 rounded-lg p-4 mb-6">
-        <h2 className="font-medium text-sm mb-3 text-charcoal">Order Summary</h2>
-        {cart.items.map((item) => (
-          <div key={item._id} className="flex justify-between text-sm text-gray-600 py-1">
-            <span>{item.product.name} × {item.quantity}</span>
-            <span>₹{((item.product.discountPrice || item.product.price) * item.quantity).toLocaleString("en-IN")}</span>
-          </div>
-        ))}
-        <div className="flex justify-between font-semibold text-charcoal mt-3 pt-3 border-t">
-          <span>Total</span>
-          <span>₹{totalAmount.toLocaleString("en-IN")}</span>
-        </div>
-      </div> */}
-
+   
 <div className="bg-gray-50 rounded-lg p-4 mb-6">
   <h2 className="font-medium text-sm mb-3 text-charcoal">Order Summary</h2>
   {cart.items.map((item) => (
@@ -183,12 +170,7 @@ if (!isAuthenticated) {
     <span>₹{orderTotals.subtotal.toLocaleString("en-IN")}</span>
   </div>
 
-  {/* {orderTotals.bogoDiscount > 0 && (
-    <div className="flex justify-between text-sm text-green-700 py-1">
-      <span>Buy 3 Get 1 Free Discount</span>
-      <span>−₹{orderTotals.bogoDiscount.toLocaleString("en-IN")}</span>
-    </div>
-  )} */}
+  
 
   {orderTotals.couponDiscount > 0 && (
     <div className="flex justify-between text-sm text-green-700 py-1">
@@ -277,7 +259,7 @@ if (!isAuthenticated) {
       type="button"
       onClick={handleApplyCoupon}
       disabled={couponApplied}
-      className="bg-[#3F010C] text-white px-4 py-2 rounded-md text-sm disabled:opacity-50"
+      className="bg-charcoal text-white px-4 py-2 rounded-md text-sm disabled:opacity-50"
     >
       {couponApplied ? "Applied" : "Apply"}
     </button>
