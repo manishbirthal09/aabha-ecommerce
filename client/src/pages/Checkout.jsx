@@ -24,6 +24,11 @@ export default function Checkout() {
   const [couponDiscountPercent, setCouponDiscountPercent] = useState(0);
   const [couponError, setCouponError] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
+  const orderTotals = calculateOrderTotal({
+  cartItems: cart.items,
+  settings,
+  couponDiscountPercent: couponApplied ? couponDiscountPercent : 0,
+});
 useEffect(() => {
     api.get("/settings").then(({ data }) => setSettings(data));
   }, []);
@@ -78,7 +83,7 @@ if (!isAuthenticated) {
 
     const { data: order } = await api.post("/orders", {
       items,
-      totalAmount,
+      totalAmount:orderTotals.total,
       customer: address,
       paymentMethod,
     });
@@ -86,7 +91,7 @@ if (!isAuthenticated) {
     if (paymentMethod === "razorpay") {
       
       const { data } = await api.post("/payment/create-order", {
-        amount: totalAmount,
+        amount: orderTotals.total,
         orderId: order._id,
       });
 
@@ -150,7 +155,7 @@ if (!isAuthenticated) {
     <div className="max-w-2xl mx-auto px-6 py-10">
       <h1 className="text-2xl font-serif mb-8 text-charcoal">Checkout</h1>
 
-      <div className="bg-gray-50 rounded-lg p-4 mb-6">
+      {/* <div className="bg-gray-50 rounded-lg p-4 mb-6">
         <h2 className="font-medium text-sm mb-3 text-charcoal">Order Summary</h2>
         {cart.items.map((item) => (
           <div key={item._id} className="flex justify-between text-sm text-gray-600 py-1">
@@ -162,8 +167,46 @@ if (!isAuthenticated) {
           <span>Total</span>
           <span>₹{totalAmount.toLocaleString("en-IN")}</span>
         </div>
-      </div>
+      </div> */}
 
+<div className="bg-gray-50 rounded-lg p-4 mb-6">
+  <h2 className="font-medium text-sm mb-3 text-charcoal">Order Summary</h2>
+  {cart.items.map((item) => (
+    <div key={item._id} className="flex justify-between text-sm text-gray-600 py-1">
+      <span>{item.product.name} × {item.quantity}</span>
+      <span>₹{((item.product.discountPrice || item.product.price) * item.quantity).toLocaleString("en-IN")}</span>
+    </div>
+  ))}
+
+  <div className="flex justify-between text-sm text-gray-600 mt-3 pt-3 border-t">
+    <span>Subtotal</span>
+    <span>₹{orderTotals.subtotal.toLocaleString("en-IN")}</span>
+  </div>
+
+  {/* {orderTotals.bogoDiscount > 0 && (
+    <div className="flex justify-between text-sm text-green-700 py-1">
+      <span>Buy 3 Get 1 Free Discount</span>
+      <span>−₹{orderTotals.bogoDiscount.toLocaleString("en-IN")}</span>
+    </div>
+  )} */}
+
+  {orderTotals.couponDiscount > 0 && (
+    <div className="flex justify-between text-sm text-green-700 py-1">
+      <span>Coupon Discount ({couponDiscountPercent}%)</span>
+      <span>−₹{Math.round(orderTotals.couponDiscount).toLocaleString("en-IN")}</span>
+    </div>
+  )}
+
+  <div className="flex justify-between text-sm text-gray-600 py-1">
+    <span>Delivery Charge</span>
+    <span>₹{orderTotals.deliveryCharge.toLocaleString("en-IN")}</span>
+  </div>
+
+  <div className="flex justify-between font-semibold text-charcoal mt-3 pt-3 border-t">
+    <span>Total</span>
+    <span>₹{orderTotals.total.toLocaleString("en-IN")}</span>
+  </div>
+</div>
       {error && <p className="text-red-600 text-sm mb-4 bg-red-50 p-2 rounded">{error}</p>}
 
       <form onSubmit={handlePlaceOrder} className="space-y-4">
