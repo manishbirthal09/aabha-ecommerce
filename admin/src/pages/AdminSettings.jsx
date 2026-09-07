@@ -5,17 +5,17 @@ import AdminLayout from "../components/AdminLayout";
 
 export default function AdminSettings() {
   const [deliveryCharge, setDeliveryCharge] = useState(99);
-  const [bogoEnabled, setBogoEnabled] = useState(true);
+  
 
   useEffect(() => {
     api.get("/settings").then(({ data }) => {
       setDeliveryCharge(data.deliveryCharge);
-      setBogoEnabled(data.bogoEnabled);
+      
     });
   }, []);
 
   const handleSave = async () => {
-    await api.put("/settings", { deliveryCharge, bogoEnabled });
+    await api.put("/settings", { deliveryCharge});
     alert("Settings saved");
   };
 
@@ -34,17 +34,7 @@ export default function AdminSettings() {
         />
       </div>
 
-      <div className="mb-4 flex items-center gap-2">
-        <input
-          type="checkbox"
-          checked={bogoEnabled}
-          onChange={(e) => setBogoEnabled(e.target.checked)}
-          className="accent-brand-primary"
-        />
-        <label className="text-sm text-gray-600">
-          Enable "Buy 2 Get 1 Free" offer
-        </label>
-      </div>
+      
 
       <button
         onClick={handleSave}
