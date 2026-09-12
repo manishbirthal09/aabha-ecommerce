@@ -62,7 +62,13 @@ export const createOrder = async (req, res) => {
       customer,
       paymentMethod,
     });
-
+ await Promise.all(
+      populatedItems.map(async (item) => {
+        await Product.findByIdAndUpdate(item.product._id, {
+          $inc: { stock: -item.quantity }
+        });
+      })
+    );
     res.status(201).json(order);
     sendOrderNotification(order);
   } catch (err) {
