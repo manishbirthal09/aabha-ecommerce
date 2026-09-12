@@ -12,10 +12,9 @@ const orderSchema = new mongoose.Schema(
     customerRef: { type: mongoose.Schema.Types.ObjectId, ref: "Customer", required: true },
     items: [orderItemSchema],
     subtotal: { type: Number, required: true },
-    bogoDiscount: { type: Number, default: 0 },
     couponDiscount: { type: Number, default: 0 },
     couponCode: { type: String, default: null },
-    deliveryCharge: { type: Number, required: true },
+    
     totalAmount: { type: Number, required: true },
     customer: {
       name: { type: String, required: true },
