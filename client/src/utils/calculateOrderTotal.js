@@ -1,4 +1,4 @@
-export function calculateOrderTotal({ cartItems, settings, couponDiscountPercent = 0 }) {
+export function calculateOrderTotal({ cartItems,  couponDiscountPercent = 0 }) {
   const subtotal = cartItems.reduce((sum, item) => {
     const price = item.product.discountPrice || item.product.price;
     return sum + price * item.quantity;

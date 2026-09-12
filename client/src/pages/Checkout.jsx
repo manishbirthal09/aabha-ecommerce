@@ -26,7 +26,7 @@ export default function Checkout() {
   const [couponApplied, setCouponApplied] = useState(false);
   const orderTotals = calculateOrderTotal({
   cartItems: cart.items,
-  settings,
+  
   couponDiscountPercent: couponApplied ? couponDiscountPercent : 0,
 });
 // useEffect(() => {

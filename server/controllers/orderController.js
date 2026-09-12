@@ -27,9 +27,9 @@ export const createOrder = async (req, res) => {
     }, 0);
 
     
-    const settings = (await Settings.findOne()) || { deliveryCharge: 99, bogoEnabled: true };
-    const bogoDiscount = calculateBogoDiscount(populatedItems, settings.bogoEnabled);
-    const afterBogo = subtotal - bogoDiscount;
+    // const settings = (await Settings.findOne()) || { deliveryCharge: 99, bogoEnabled: true };
+    // const bogoDiscount = calculateBogoDiscount(populatedItems, settings.bogoEnabled);
+    // const afterBogo = subtotal - bogoDiscount;
 
     
     let couponDiscountPercent = 0;
