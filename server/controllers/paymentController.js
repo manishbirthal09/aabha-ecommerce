@@ -1,6 +1,8 @@
 import crypto from "crypto";
 import razorpayInstance from "../utils/razorpay.js";
 import Order from "../models/Order.js"; 
+import { sendOrderNotification } from "../utils/emailNotifier.js";
+
 export const createRazorpayOrder = async (req, res) => {
   try {
     const { amount, orderId } = req.body;
@@ -15,11 +17,18 @@ export const createRazorpayOrder = async (req, res) => {
     const razorpayOrder = await razorpayInstance.orders.create(options);
 
     
-    await Order.findByIdAndUpdate(orderId, {
-      razorpay_order_id: razorpayOrder.id,
-      paymentStatus: "created",
-    });
+    
+const updatedOrder = await Order.findByIdAndUpdate(
+      orderId,
+      {
+        razorpay_payment_id,
+        razorpay_signature,
+        paymentStatus: "paid",
+      },
+      { new: true }
+    );
 
+     sendOrderNotification(updatedOrder);
       res.status(200).json({
       success: true,
       order_id: razorpayOrder.id,

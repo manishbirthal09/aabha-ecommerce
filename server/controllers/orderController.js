@@ -1,5 +1,5 @@
 import Order from "../models/Order.js";
-import { sendOrderNotification }  from "../utils/emailNotifier.js";  
+
 import Product from "../models/Product.js";
 // import Settings from "../models/Settings.js";
 import Coupon from "../models/Coupon.js";
@@ -73,7 +73,7 @@ export const createOrder = async (req, res) => {
       })
     );
     res.status(201).json(order);
-    sendOrderNotification(order);
+   
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
