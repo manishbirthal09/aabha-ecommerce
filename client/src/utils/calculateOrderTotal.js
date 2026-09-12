@@ -12,7 +12,7 @@ const total = afterCoupon ;
   return {
     subtotal,
     couponDiscount,
-    deliveryCharge,
+    
     total: Math.round(total),
   };
 }

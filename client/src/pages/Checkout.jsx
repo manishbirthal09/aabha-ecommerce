@@ -19,7 +19,7 @@ export default function Checkout() {
   });
   const [placing, setPlacing] = useState(false);
   const [error, setError] = useState("");
-  const [settings, setSettings] = useState({ deliveryCharge: 99, bogoEnabled: true });
+  // const [settings, setSettings] = useState({ deliveryCharge: 99, bogoEnabled: true });
   const [couponCode, setCouponCode] = useState("");
   const [couponDiscountPercent, setCouponDiscountPercent] = useState(0);
   const [couponError, setCouponError] = useState("");
@@ -29,9 +29,9 @@ export default function Checkout() {
   settings,
   couponDiscountPercent: couponApplied ? couponDiscountPercent : 0,
 });
-useEffect(() => {
-    api.get("/settings").then(({ data }) => setSettings(data));
-  }, []);
+// useEffect(() => {
+//     api.get("/settings").then(({ data }) => setSettings(data));
+//   }, []);
 
   const handleApplyCoupon = async () => {
     setCouponError("");
