@@ -6,9 +6,9 @@ export function calculateOrderTotal({ cartItems, settings, couponDiscountPercent
 
   const couponDiscount = (subtotal * couponDiscountPercent) / 100;
   const afterCoupon = subtotal - couponDiscount;
-  const deliveryCharge = settings.deliveryCharge;
-  const total = afterCoupon + deliveryCharge;
-
+  // const deliveryCharge = settings.deliveryCharge;
+  // const total = afterCoupon + deliveryCharge;
+const total = afterCoupon ;
   return {
     subtotal,
     couponDiscount,

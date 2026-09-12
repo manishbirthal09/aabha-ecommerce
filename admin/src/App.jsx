@@ -9,7 +9,7 @@ import Orders from "./pages/Orders";
 import Dashboard from "./pages/Dashboard";
 import AdminCoupons from "./pages/AdminCoupons";
 
-import AdminSettings from "./pages/AdminSettings";
+// import AdminSettings from "./pages/AdminSettings";
 
 
 export default function App() {
@@ -63,7 +63,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-          <Route
+          {/* <Route
             path="/settings"
             element={
               <ProtectedRoute>
@@ -72,7 +72,7 @@ export default function App() {
                 
               </ProtectedRoute>
             }
-          />
+          /> */}
         </Routes>
       </AuthProvider>
     </BrowserRouter>

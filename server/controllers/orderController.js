@@ -40,8 +40,9 @@ export const createOrder = async (req, res) => {
     const couponDiscount = (afterBogo * couponDiscountPercent) / 100;
 
     
-    const deliveryCharge = settings.deliveryCharge;
-    const totalAmount = Math.round(afterBogo - couponDiscount + deliveryCharge);
+    // const deliveryCharge = settings.deliveryCharge;
+    // const totalAmount = Math.round(afterBogo - couponDiscount + deliveryCharge);
+    const totalAmount = Math.round(afterBogo - couponDiscount);
 
     
     const order = await Order.create({
@@ -56,7 +57,7 @@ export const createOrder = async (req, res) => {
       bogoDiscount,
       couponDiscount,
       couponCode: couponCode || null,
-      deliveryCharge,
+      
       totalAmount,
       customer,
       paymentMethod,

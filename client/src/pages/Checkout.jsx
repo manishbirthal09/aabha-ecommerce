@@ -179,10 +179,10 @@ if (!isAuthenticated) {
     </div>
   )}
 
-  <div className="flex justify-between text-sm text-gray-600 py-1">
+  {/* <div className="flex justify-between text-sm text-gray-600 py-1">
     <span>Delivery Charge</span>
     <span>₹{orderTotals.deliveryCharge.toLocaleString("en-IN")}</span>
-  </div>
+  </div> */}
 
   <div className="flex justify-between font-semibold text-charcoal mt-3 pt-3 border-t">
     <span>Total</span>
