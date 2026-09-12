@@ -15,6 +15,9 @@ export const createOrder = async (req, res) => {
     const populatedItems = await Promise.all(
       items.map(async (item) => {
         const product = await Product.findById(item.product);
+        if (product.stock < item.quantity) {
+          throw new Error(`Insufficient stock for ${product.name}. Only ${product.stock} left.`);
+        }
         if (!product) throw new Error(`Product not found: ${item.product}`);
         return { product, quantity: item.quantity };
       })

@@ -5,7 +5,7 @@ export default function ProductCard({ product }) {
   const navigate = useNavigate();
   const imageUrl = product.images?.[0]?.url || product.images?.[0] || "/placeholder.jpg";
 
-  const isOutOfStock = product.stock === 0;
+  const isOutOfStock = product.stock <= 0;
   const isLowStock = product.stock > 0 && product.stock <= 5;
 
   const handleViewProduct = (e) => {

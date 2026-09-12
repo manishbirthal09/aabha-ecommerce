@@ -51,7 +51,7 @@ export default function ProductDetail() {
   const discountPercent = hasDiscount
     ? Math.round(((product.price - product.discountPrice) / product.price) * 100)
     : 0;
-  const isOutOfStock = product.stock === 0;
+  const isOutOfStock = product.stock <= 0;
   const isLowStock = product.stock > 0 && product.stock <= 5;
 
   const buildSelection = () => ({
