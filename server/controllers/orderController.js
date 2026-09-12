@@ -37,12 +37,12 @@ export const createOrder = async (req, res) => {
       const coupon = await Coupon.findOne({ code: couponCode.toUpperCase(), active: true });
       if (coupon) couponDiscountPercent = coupon.discountPercent;
     }
-    const couponDiscount = (afterBogo * couponDiscountPercent) / 100;
+    const couponDiscount = (subtotal * couponDiscountPercent) / 100;
 
     
     // const deliveryCharge = settings.deliveryCharge;
     // const totalAmount = Math.round(afterBogo - couponDiscount + deliveryCharge);
-    const totalAmount = Math.round(afterBogo - couponDiscount);
+    const totalAmount = Math.round(subtotal - couponDiscount);
 
     
     const order = await Order.create({
@@ -54,7 +54,7 @@ export const createOrder = async (req, res) => {
         price: item.product.discountPrice || item.product.price,
       })),
       subtotal,
-      bogoDiscount,
+      
       couponDiscount,
       couponCode: couponCode || null,
       
