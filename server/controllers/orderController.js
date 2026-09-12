@@ -3,7 +3,7 @@ import { sendOrderNotification }  from "../utils/emailNotifier.js";
 import Product from "../models/Product.js";
 // import Settings from "../models/Settings.js";
 import Coupon from "../models/Coupon.js";
-import { calculateBogoDiscount } from "../utils/calculateBogo.js";
+// import { calculateBogoDiscount } from "../utils/calculateBogo.js";
 
 
 
