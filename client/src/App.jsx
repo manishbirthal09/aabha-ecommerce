@@ -13,6 +13,11 @@ import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import Profile from "./pages/Profile";
 import Layout from "./components/Layout";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import About from "./pages/About";
+
 const App = () => {
   return (
     <CartProvider>
@@ -29,6 +34,10 @@ const App = () => {
             <Route path="/checkout" element={<Checkout />} />      
             <Route path="/order-success/:orderId" element={<OrderSuccess />} />
              <Route path="/profile" element={<Profile />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
+            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/about" element={<About />} />
             </Route>
         </Routes>
         

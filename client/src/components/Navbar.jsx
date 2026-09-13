@@ -6,7 +6,7 @@ const navLinks = [
   { label: 'Shop All', to: '/products' },
   { label: 'Bulk Orders', to: 'https://wa.me/919142918584?text=Hi%2C%20I%27m%20interested%20in%20bulk%20orders', external: true },
   { label: 'Instagram', to: 'https://instagram.com/aabha_bybhanupriya', external: true},
-  { label: 'contact us', to: '/footer' },
+  { label: 'contact us', to: 'https://wa.me/919142918584?text=Hi%2C%20I%27d%20like%20to%20know%20more', external: true },
 ];
 
 const Navbar = () => {
