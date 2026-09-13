@@ -16,7 +16,7 @@ import Layout from "./components/Layout";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
-import About from "./pages/About";
+import About from "./components/About";
 
 const App = () => {
   return (
