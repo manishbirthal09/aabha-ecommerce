@@ -4,20 +4,12 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="bg-background border-t border-secondary">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
         
-        {/* Newsletter */}
-        <div className="text-center mb-12 pb-12 border-b border-secondary">
-          <h3 className="font-heading text-xl md:text-2xl font-semibold text-charcoal mb-2">
-            Be The First To Know
-          </h3>
-          <p className="font-body text-sm text-charcoal/60 mb-6">
-            New scents, offers & candle care tips. No spam, promise.
-          </p>
-          
-        </div>
+       
+       
 
-        {/* Links grid */}
+        
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div>
             <h4 className="font-heading text-sm font-semibold text-charcoal mb-4">
@@ -90,7 +82,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom bar */}
+        
         <div className="pt-6 border-t border-secondary flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="font-body text-xs text-charcoal/50">
             © {new Date().getFullYear()} Aabha. All rights reserved.
