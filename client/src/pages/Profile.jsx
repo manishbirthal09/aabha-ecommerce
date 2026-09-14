@@ -87,7 +87,14 @@ export default function Profile() {
                   </p>
                 ))}
               </div>
-
+<div className="mb-3 pt-3 border-t border-gray-100">
+  <p className="text-xs font-medium text-gray-500 mb-1">Shipping Details</p>
+  <p className="text-sm text-gray-600">{order.customer?.name}</p>
+  <p className="text-sm text-gray-600">{order.customer?.phone}</p>
+  <p className="text-sm text-gray-600">
+    {order.customer?.address}, {order.customer?.city} - {order.customer?.pincode}
+  </p>
+</div>
               <div className="flex justify-between items-center pt-3 border-t border-gray-100">
                 <span className="text-xs text-gray-500">
                   Payment: {order.paymentMethod?.toUpperCase()} ({order.paymentStatus})
