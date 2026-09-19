@@ -14,7 +14,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
   scents: product?.scents?.join(", ") || "",
   colors: product?.colors?.join(", ") || "",
   quantityPresets: product?.quantityPresets?.join(", ") || "",
-    
+    weight: product?.weight || "",
   });
   const [images, setImages] = useState([]);
   const [saving, setSaving] = useState(false);
@@ -189,8 +189,8 @@ export default function ProductForm({ product, onClose, onSaved }) {
   <label className="block text-sm font-medium mb-1">Weight (in grams)</label>
   <input
     type="number"
-    value={formData.weight}
-    onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+    value={form.weight}
+    onChange={handleChange}
     placeholder="e.g. 250"
     className="w-full border px-3 py-2 rounded"
   />
