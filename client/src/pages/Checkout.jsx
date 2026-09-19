@@ -86,10 +86,10 @@ if (!isAuthenticated) {
       quantity: item.quantity,
       selection: item.selection || {},
     }));
-const finalTotal = orderTotals.total + deliveryCharge;
+
     const { data: order } = await api.post("/orders", {
       items,
-      totalAmount:finalTotal,
+      totalAmount:orderTotals.total,
       deliveryCharge,
       customer: address,
       paymentMethod,
@@ -98,7 +98,7 @@ const finalTotal = orderTotals.total + deliveryCharge;
     if (paymentMethod === "razorpay") {
       
       const { data } = await api.post("/payment/create-order", {
-        amount:finalTotal,
+        amount:orderTotals.total,
         orderId: order._id,
       });
 
