@@ -188,6 +188,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
 <div className="mb-4">
   <label className="block text-sm font-medium mb-1">Weight (in grams)</label>
   <input
+    name="weight"
     type="number"
     value={form.weight}
     onChange={handleChange}
