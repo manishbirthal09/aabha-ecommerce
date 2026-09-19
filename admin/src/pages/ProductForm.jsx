@@ -185,6 +185,16 @@ export default function ProductForm({ product, onClose, onSaved }) {
     className="w-4/5 mx-auto sm:w-full sm:mx-0 border rounded-md px-3 py-2 mt-1 text-sm"
   />
 </div>
+<div className="mb-4">
+  <label className="block text-sm font-medium mb-1">Weight (in grams)</label>
+  <input
+    type="number"
+    value={formData.weight}
+    onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+    placeholder="e.g. 250"
+    className="w-full border px-3 py-2 rounded"
+  />
+</div>
 <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-2">
   <button type="button" onClick={onClose} className="w-4/5 mx-auto sm:w-auto sm:mx-0 px-4 py-2 text-sm border rounded-md">
     Cancel

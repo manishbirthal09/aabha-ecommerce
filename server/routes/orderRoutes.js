@@ -9,7 +9,9 @@ import {
   updateOrderStatus,
   getMyOrders, 
 } from "../controllers/orderController.js";
+import { estimateDeliveryCharge } from "../controllers/orderController.js";
 
+router.post("/estimate-delivery", estimateDeliveryCharge);
 router.post("/", protectCustomer, createOrder);
 router.get("/my-orders", protectCustomer, getMyOrders);    
 router.get("/", protect, getOrders);                        

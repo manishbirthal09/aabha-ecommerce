@@ -15,6 +15,7 @@ const productSchema = new mongoose.Schema(
     images: [{ type: String }],
     sizes: [{ type: String }],
     scents: [{ type: String }],
+    weight: { type: Number, default: 200 },
     colors: [
       {
         type: String

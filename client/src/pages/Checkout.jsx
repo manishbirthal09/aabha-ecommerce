@@ -24,10 +24,16 @@ export default function Checkout() {
   const [couponDiscountPercent, setCouponDiscountPercent] = useState(0);
   const [couponError, setCouponError] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
+
+  const [pincode, setPincode] = useState("");
+const [deliveryCharge, setDeliveryCharge] = useState(0);
+const [loadingCharge, setLoadingCharge] = useState(false);
+
   const orderTotals = calculateOrderTotal({
   cartItems: cart.items,
   
   couponDiscountPercent: couponApplied ? couponDiscountPercent : 0,
+  deliveryCharge,
 });
 // useEffect(() => {
 //     api.get("/settings").then(({ data }) => setSettings(data));
@@ -80,10 +86,11 @@ if (!isAuthenticated) {
       quantity: item.quantity,
       selection: item.selection || {},
     }));
-
+const finalTotal = orderTotals.total + deliveryCharge;
     const { data: order } = await api.post("/orders", {
       items,
-      totalAmount:orderTotals.total,
+      totalAmount:finalTotal,
+      deliveryCharge,
       customer: address,
       paymentMethod,
     });
@@ -91,7 +98,7 @@ if (!isAuthenticated) {
     if (paymentMethod === "razorpay") {
       
       const { data } = await api.post("/payment/create-order", {
-        amount: orderTotals.total,
+        amount:finalTotal,
         orderId: order._id,
       });
 
@@ -150,7 +157,24 @@ if (!isAuthenticated) {
 };
 
 
+// Checkout component ke andar:
 
+const fetchDeliveryCharge = async (pin) => {
+  if (pin.length !== 6) return; 
+  
+  setLoadingCharge(true);
+  try {
+    const res = await api.post("/orders/estimate-delivery", {
+      pincode: pin,
+      cartItems: cart.items, 
+    });
+    setDeliveryCharge(res.data.deliveryCharge);
+  } catch (err) {
+    console.error("Delivery charge fetch failed:", err);
+    setDeliveryCharge(60); // fallback
+  }
+  setLoadingCharge(false);
+};
   return (
     <div className="max-w-2xl mx-auto px-6 py-10">
       <h1 className="text-2xl font-serif mb-8 text-charcoal">Checkout</h1>
@@ -183,7 +207,18 @@ if (!isAuthenticated) {
     <span>Delivery Charge</span>
     <span>₹{orderTotals.deliveryCharge.toLocaleString("en-IN")}</span>
   </div> */}
-
+{/* {deliveryCharge > 0 && (
+  <div className="flex justify-between text-sm text-gray-600 py-1">
+    <span>Delivery Charge</span>
+    <span>₹{deliveryCharge.toLocaleString("en-IN")}</span>
+  </div>
+)} */}
+{orderTotals.deliveryCharge > 0 && (
+  <div className="flex justify-between text-sm text-gray-600 py-1">
+    <span>Delivery Charge</span>
+    <span>₹{orderTotals.deliveryCharge.toLocaleString("en-IN")}</span>
+  </div>
+)}
   <div className="flex justify-between font-semibold text-charcoal mt-3 pt-3 border-t">
     <span>Total</span>
     <span>₹{orderTotals.total.toLocaleString("en-IN")}</span>
@@ -235,13 +270,26 @@ if (!isAuthenticated) {
           </div>
           <div>
             <label className="text-sm text-gray-600">Pincode</label>
-            <input
+            {/* <input
               name="pincode"
               value={address.pincode}
               onChange={handleChange}
               required
               className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
-            />
+            /> */}
+            <input
+  type="text"
+  placeholder="Enter Pincode"
+  value={pincode}
+  onChange={(e) =>{
+     setPincode(e.target.value);
+
+  setAddress({ ...address, pincode: e.target.value }); }}
+  onBlur={() => fetchDeliveryCharge(pincode)}
+  maxLength={6}
+/>
+
+{loadingCharge && <p>Calculating delivery charge...</p>}
           </div>
         </div>
 

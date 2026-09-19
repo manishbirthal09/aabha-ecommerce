@@ -1,5 +1,5 @@
 import Order from "../models/Order.js";
-
+import { getShippingCharge } from "../utils/delhivery.js";
 import Product from "../models/Product.js";
 // import Settings from "../models/Settings.js";
 import Coupon from "../models/Coupon.js";
@@ -120,5 +120,23 @@ export const getMyOrders = async (req, res) => {
     res.json(orders);
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+};
+
+export const estimateDeliveryCharge = async (req, res) => {
+  try {
+    const { pincode, cartItems } = req.body;
+
+    const totalWeight = cartItems.reduce((sum, item) => {
+      return sum + (item.product.weight || 200) * item.quantity;
+    }, 0);
+
+    const chargeData = await getShippingCharge(pincode, totalWeight);
+    const charge = chargeData[0]?.total_amount || 60;
+
+    res.json({ deliveryCharge: Math.round(charge) });
+  } catch (err) {
+    console.error("Delivery charge estimation failed:", err.message);
+    res.json({ deliveryCharge: 60 });
   }
 };
