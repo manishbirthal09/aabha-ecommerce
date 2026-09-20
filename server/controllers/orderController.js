@@ -4,7 +4,7 @@ import Product from "../models/Product.js";
 // import Settings from "../models/Settings.js";
 import Coupon from "../models/Coupon.js";
 // import { calculateBogoDiscount } from "../utils/calculateBogo.js";
-
+import { getApplicableGift } from "../utils/giftLogic.js";
 
 
 export const createOrder = async (req, res) => {
@@ -46,8 +46,22 @@ export const createOrder = async (req, res) => {
     // const deliveryCharge = settings.deliveryCharge;
     // const totalAmount = Math.round(afterBogo - couponDiscount + deliveryCharge);
     const totalAmount = Math.round(subtotal - couponDiscount);
-
-    
+const orderItems = populatedItems.map((item) => ({
+      product: item.product._id,
+      name: item.product.name,
+      quantity: item.quantity,
+      price: item.product.discountPrice || item.product.price,
+    }));
+    const freeGift = getApplicableGift(subtotal);
+    if (freeGift) {
+      orderItems.push({
+        product: null,
+        name: freeGift.name,
+        quantity: freeGift.quantity,
+        price: 0,
+        isFreeGift: true,
+      });
+    }
     const order = await Order.create({
       customerRef: req.customer.id,
       items: populatedItems.map((item) => ({

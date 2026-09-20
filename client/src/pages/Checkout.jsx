@@ -224,6 +224,20 @@ const fetchDeliveryCharge = async (pin) => {
     <span>₹{orderTotals.total.toLocaleString("en-IN")}</span>
   </div>
 </div>
+{(() => {
+  const freeGift = orderTotals.subtotal >= 2999
+    ? { name: "Scented Wax Sachet", qty: 1 }
+    : orderTotals.subtotal >= 1999
+    ? { name: "Set of 2 Mini Candles", qty: 2 }
+    : null;
+
+  return freeGift ? (
+    <div className="flex justify-between text-sm text-green-700 py-1">
+      <span>🎁 {freeGift.name} × {freeGift.qty}</span>
+      <span>FREE</span>
+    </div>
+  ) : null;
+})()}
       {error && <p className="text-red-600 text-sm mb-4 bg-red-50 p-2 rounded">{error}</p>}
 
       <form onSubmit={handlePlaceOrder} className="space-y-4">

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 const messages = [
-  <>Handcrafted with love — small batch candles </>,
-  <>Made to bring warmth and calm to your everyday</>,
-  <>Every piece handpoured, just for you</>,
-  <>Explore our candles and gifting collections</>,
+  <>🎁 FREE Set of 2 Mini Candles on orders above ₹1999 </>,
+  <>🎁 FREE Scented Wax Sachet on orders above ₹2999</>,
+  // <>Every piece handpoured, just for you</>,
+  // <>Explore our candles and gifting collections</>,
 ];
 
 const AnnouncementBar = () => {
