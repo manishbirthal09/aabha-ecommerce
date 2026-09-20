@@ -16,6 +16,8 @@ export default function Products() {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search);
 const [searchParams] = useSearchParams();
+const urlCategory = searchParams.get("category") || "";
+
   const [filters, setFilters] = useState({
     categories: searchParams.get("category") ? [searchParams.get("category")] : [],
     fabrics: [],
@@ -29,18 +31,36 @@ const [searchParams] = useSearchParams();
       setLoading(false);
     });
   }, []);
-
-  const filteredProducts = useMemo(() => {
-    return products.filter((p) => {
-      const matchesSearch = p.name.toLowerCase().includes(debouncedSearch.toLowerCase());
-      const matchesCategory =
-        filters.categories.length === 0 || filters.categories.includes(p.category?.name);
-      const matchesFabric = filters.fabrics.length === 0 || filters.fabrics.includes(p.fabric);
-      const matchesColor = filters.colors.length === 0 || filters.colors.includes(p.color);
-      const matchesPrice = p.price <= filters.maxPrice;
-      return matchesSearch && matchesCategory && matchesFabric && matchesColor && matchesPrice;
-    });
-  }, [debouncedSearch, filters, products]);
+useEffect(() => {
+  if (urlCategory) {
+    setFilters((prev) => ({ ...prev, categories: [urlCategory] }));
+  }
+}, [urlCategory]);
+const filteredProducts = useMemo(() => {
+  return products.filter((p) => {
+    const matchesSearch = p.name.toLowerCase().includes(debouncedSearch.toLowerCase());
+    
+    const matchesCategory = urlCategory
+      ? p.category?.name?.toLowerCase().includes(urlCategory.toLowerCase())
+      : filters.categories.length === 0 || filters.categories.includes(p.category?.name);
+    
+    const matchesFabric = filters.fabrics.length === 0 || filters.fabrics.includes(p.fabric);
+    const matchesColor = filters.colors.length === 0 || filters.colors.includes(p.color);
+    const matchesPrice = p.price <= filters.maxPrice;
+    return matchesSearch && matchesCategory && matchesFabric && matchesColor && matchesPrice;
+  });
+}, [debouncedSearch, urlCategory, filters, products]);
+  // const filteredProducts = useMemo(() => {
+  //   return products.filter((p) => {
+  //     const matchesSearch = p.name.toLowerCase().includes(debouncedSearch.toLowerCase());
+  //     const matchesCategory =
+  //       filters.categories.length === 0 || filters.categories.includes(p.category?.name);
+  //     const matchesFabric = filters.fabrics.length === 0 || filters.fabrics.includes(p.fabric);
+  //     const matchesColor = filters.colors.length === 0 || filters.colors.includes(p.color);
+  //     const matchesPrice = p.price <= filters.maxPrice;
+  //     return matchesSearch && matchesCategory && matchesFabric && matchesColor && matchesPrice;
+  //   });
+  // }, [debouncedSearch, filters, products]);
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">

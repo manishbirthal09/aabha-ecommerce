@@ -68,7 +68,7 @@ const Footer = () => {
               Get In Touch
             </h4>
             <ul className="space-y-2 font-body text-sm text-charcoal/60">
-              <li>priyachoudhary<br/>1005@gmail.com</li>
+              <li>aabhabhanupriya<br/>@gmail.com</li>
               <li>+91 9142918584</li>
             </ul>
             <div className="flex gap-3 mt-4">
