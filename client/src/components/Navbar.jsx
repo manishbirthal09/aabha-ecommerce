@@ -8,7 +8,7 @@ const navLinks = [
   { label: 'Instagram', to: 'https://instagram.com/aabha_bybhanupriya', external: true},
   { label: 'contact us', to: 'https://wa.me/919142918584?text=Hi%2C%20I%27d%20like%20to%20know%20more', external: true },
   { label: 'Candles', to: '/products?category=candles' },
-  { label: 'Embroidery', to: '/products?category=Embroidery hoop' },
+  { label: 'Embroidery', to: '/products?category=EMBROIDERY HOOP' },
   { label: 'Earrings', to: '/products?category=Earrings' },
 ];
 

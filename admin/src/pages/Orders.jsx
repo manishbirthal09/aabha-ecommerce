@@ -131,6 +131,30 @@ export default function Orders() {
                           </div>
                           <div>
                             <h3 className="font-medium mb-2">Items</h3>
+{order.items.map((item, i) => (
+   <div key={i} className="text-gray-600 mb-2">
+      <p>
+        {item.name} × {item.quantity} — ₹{item.price}
+        {item.isFreeGift && (
+          <span className="ml-2 inline-block bg-green-100 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded">
+            🎁 FREE GIFT
+          </span>
+        )}
+      </p>
+      {(item.selection?.size || item.selection?.scent || item.selection?.color) && (
+        <p className="text-xs text-gray-500">
+          {[
+            item.selection?.size && `Size: ${item.selection.size}`,
+            item.selection?.scent && `Scent: ${item.selection.scent}`,
+            item.selection?.color && `Color: ${item.selection.color}`,
+          ]
+            .filter(Boolean)
+            .join(" · ")}
+        </p>
+      )}
+    </div>
+))}
+                            {/* <h3 className="font-medium mb-2">Items</h3>
                             {order.items.map((item, i) => (
                                <div key={i} className="text-gray-600 mb-2">
       <p>
@@ -148,7 +172,7 @@ export default function Orders() {
         </p>
       )}
     </div>
-                            ))}
+                            ))} */}
                           </div>
                         </div>
                       </td>

@@ -4,10 +4,15 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendOrderNotification = async (order) => {
   try {
-    const itemsList = order.items
-      .map((item) => `${item.name} × ${item.quantity} — ₹${item.price}`)
-      .join("\n");
-
+    // const itemsList = order.items
+    //   .map((item) => `${item.name} × ${item.quantity} — ₹${item.price}`)
+    //   .join("\n");
+const itemsList = order.items
+  .map((item) => {
+    const giftLabel = item.isFreeGift ? " [FREE GIFT]" : "";
+    return `${item.name} × ${item.quantity} — ₹${item.price}${giftLabel}`;
+  })
+  .join("\n");
     await resend.emails.send({
       from: "Aabha <orders@mail.aabhabybhanupriya.com>",
       to: process.env.ADMIN_ORDER_EMAIL,
