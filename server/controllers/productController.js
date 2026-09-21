@@ -41,7 +41,7 @@ export const getProductById = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, discountPrice, category,  description, stock, sizes, scents, colors, quantityPresets } = req.body;
+    const { name, price, discountPrice, category,  description, stock,weight , sizes, scents, colors, quantityPresets } = req.body;
     const images = req.files ? req.files.map((file) => file.path) : [];
 
     const product = await Product.create({
@@ -51,6 +51,7 @@ export const createProduct = async (req, res) => {
       category,
       description,
       stock,
+      weight,
       images,
       sizes: sizes ? sizes.split(",").map((s) => s.trim()).filter(Boolean) : [],
       scents: scents ? scents.split(",").map((s) => s.trim()).filter(Boolean) : [],
@@ -87,6 +88,8 @@ export const updateProduct = async (req, res) => {
     .map((q) => Number(q.trim()))
     .filter((q) => q > 0);
 }
+if (updates.weight !== undefined) {
+      updates.weight = Number(updates.weight);     }
     const product = await Product.findByIdAndUpdate(req.params.id, updates, { new: true });
     res.json(product);
   } catch (err) {
