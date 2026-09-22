@@ -58,9 +58,9 @@ export default function ProductDetail() {
   const isLowStock = product.stock > 0 && product.stock <= 5;
 
    const categoryName = (product.category?.name || "").toLowerCase();
-  const isHandkerchief = categoryName.includes("handkerchief");
-  const isEmbroideryHoop = categoryName.includes("embroidery hoop");
-  const isEmbroideredCloth = categoryName.includes("embroider") && !isEmbroideryHoop; // e.g. sweatshirt/cloth categories
+  const isHandkerchief = categoryName.includes("HANDKERCHIEFS");
+  const isEmbroideryHoop = categoryName.includes("EMBROIDERY HOOP");
+  const isEmbroideredCloth = categoryName.includes("EMBROIDERED CLOTHES") && !isEmbroideryHoop; 
   const getRequiredFields = () => {
     if (isHandkerchief) return ["nameInitial"];
     if (isEmbroideryHoop) return ["coupleName", "eventDate"];
@@ -273,7 +273,7 @@ const handleBuyNow = async () => {
             </div>
           </div>
  {isHandkerchief && (
-            <div className="mb-6 bg-gray-50 p-4 rounded-md space-y-3">
+            <div className="mb-6 bg-background p-4 rounded-md space-y-3">
               <h3 className="text-sm font-medium text-charcoal">Customise Your Handkerchief</h3>
               <div>
                 <label className="text-sm text-gray-600">Name Initial *</label>
@@ -307,7 +307,7 @@ const handleBuyNow = async () => {
           )}
 
           {isEmbroideryHoop && (
-            <div className="mb-6 bg-gray-50 p-4 rounded-md space-y-3">
+            <div className="mb-6 bg-background p-4 rounded-md space-y-3">
               <h3 className="text-sm font-medium text-charcoal">Customise Your Embroidery Hoop</h3>
               <div>
                 <label className="text-sm text-gray-600">Couple Name *</label>
@@ -332,7 +332,7 @@ const handleBuyNow = async () => {
           )}
 
           {isEmbroideredCloth && (
-            <div className="mb-6 bg-gray-50 p-4 rounded-md space-y-3">
+            <div className="mb-6 bg-background p-4 rounded-md space-y-3">
               <h3 className="text-sm font-medium text-charcoal">Customise Your Item</h3>
               <div>
                 <label className="text-sm text-gray-600">Size *</label>
