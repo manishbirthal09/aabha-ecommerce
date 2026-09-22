@@ -273,7 +273,7 @@ const handleBuyNow = async () => {
             </div>
           </div>
  {isHandkerchief && (
-            <div className="mb-6 bg-background p-4 rounded-md space-y-3">
+            <div className="mb-6  p-4 rounded-md space-y-3">
               <h3 className="text-sm font-medium text-charcoal">Customise Your Handkerchief</h3>
               <div>
                 <label className="text-sm text-gray-600">Name Initial *</label>
@@ -307,7 +307,7 @@ const handleBuyNow = async () => {
           )}
 
           {isEmbroideryHoop && (
-            <div className="mb-6 bg-background p-4 rounded-md space-y-3">
+            <div className="mb-6  p-4 rounded-md space-y-3">
               <h3 className="text-sm font-medium text-charcoal">Customise Your Embroidery Hoop</h3>
               <div>
                 <label className="text-sm text-gray-600">Couple Name *</label>
@@ -332,7 +332,7 @@ const handleBuyNow = async () => {
           )}
 
           {isEmbroideredCloth && (
-            <div className="mb-6 bg-background p-4 rounded-md space-y-3">
+            <div className="mb-6  p-4 rounded-md space-y-3">
               <h3 className="text-sm font-medium text-charcoal">Customise Your Item</h3>
               <div>
                 <label className="text-sm text-gray-600">Size *</label>
