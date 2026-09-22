@@ -57,7 +57,7 @@ export default function ProductDetail() {
   const isOutOfStock = product.stock <= 0;
   const isLowStock = product.stock > 0 && product.stock <= 5;
 
-   const categoryName = (product.category?.name || "").toLowerCase();
+   const categoryName = (product.category?.name || "");
   const isHandkerchief = categoryName.includes("HANDKERCHIEFS");
   const isEmbroideryHoop = categoryName.includes("EMBROIDERY HOOP");
   const isEmbroideredCloth = categoryName.includes("EMBROIDERED CLOTHES") && !isEmbroideryHoop; 
