@@ -152,28 +152,19 @@ export default function Orders() {
             .join(" · ")}
         </p>
       )}
-    </div>
-))}
-                            {/* <h3 className="font-medium mb-2">Items</h3>
-                            {order.items.map((item, i) => (
-                               <div key={i} className="text-gray-600 mb-2">
-      <p>
-        {item.name} × {item.quantity} — ₹{item.price}
-      </p>
-      {(item.selection?.size || item.selection?.scent || item.selection?.color) && (
-        <p className="text-xs text-gray-500">
-          {[
-            item.selection?.size && `Size: ${item.selection.size}`,
-            item.selection?.scent && `Scent: ${item.selection.scent}`,
-            item.selection?.color && `Color: ${item.selection.color}`,
-          ]
-            .filter(Boolean)
-            .join(" · ")}
-        </p>
+      {item.customization && Object.keys(item.customization).length > 0 && (
+        <div className="text-xs text-gray-500 mt-1">
+          {Object.entries(item.customization).map(([key, value]) => (
+            <p key={key}>
+              {key}: {value}
+            </p>
+          ))}
+        </div>
       )}
-    </div>
-                            ))} */}
-                          </div>
+                            </div>
+                          ))}
+                        </div>
+                      
                         </div>
                       </td>
                     </tr>

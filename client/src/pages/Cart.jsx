@@ -34,7 +34,7 @@ export default function Cart() {
           if (!product) return null;
           const imageUrl = product.images?.[0]?.url || product.images?.[0];
           const price = product.discountPrice || product.price;
-
+const hasCustomization = item.customization && Object.keys(item.customization).length > 0;
           return (
             <div key={item._id} className="flex gap-4 border-b border-gray-200 pb-6">
               <img
@@ -47,7 +47,13 @@ export default function Cart() {
                 <p className="text-sm text-gray-500 mt-1">
                   ₹{price.toLocaleString("en-IN")}
                 </p>
-
+{hasCustomization && (
+          <div className="mt-2 text-xs text-gray-500 space-y-0.5">
+            {Object.entries(item.customization).map(([key, value]) =>
+              value ? <p key={key}>{key}: {value}</p> : null
+            )}
+          </div>
+        )}
                 <div className="flex items-center gap-3 mt-3">
                   <button
                     onClick={() => updateQuantity(product._id, item.quantity - 1)}

@@ -51,6 +51,8 @@ const orderItems = populatedItems.map((item) => ({
       name: item.product.name,
       quantity: item.quantity,
       price: item.product.discountPrice || item.product.price,
+      selection: items[index]?.selection || {},
+  customization: items[index]?.customization || {},
     }));
     const freeGift = getApplicableGift(subtotal);
     if (freeGift) {

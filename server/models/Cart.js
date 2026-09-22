@@ -8,6 +8,7 @@ const cartItemSchema = new mongoose.Schema({
     scent: String,
     color: String,
   },
+  customization: { type: mongoose.Schema.Types.Mixed, default: {} },
 });
 
 const cartSchema = new mongoose.Schema(

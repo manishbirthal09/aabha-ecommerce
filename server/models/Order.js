@@ -6,6 +6,12 @@ const orderItemSchema = new mongoose.Schema({
   price: Number,
   quantity: Number,
   isFreeGift: { type: Boolean, default: false },
+  selection: {
+    size: String,
+    scent: String,
+    color: String,
+  },
+  customization: { type: mongoose.Schema.Types.Mixed, default: {} }, 
 });
 
 const orderSchema = new mongoose.Schema(

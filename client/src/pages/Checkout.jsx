@@ -85,6 +85,7 @@ if (!isAuthenticated) {
       price: item.product.discountPrice || item.product.price,
       quantity: item.quantity,
       selection: item.selection || {},
+      customization: item.customization || {},
     }));
 
     const { data: order } = await api.post("/orders", {

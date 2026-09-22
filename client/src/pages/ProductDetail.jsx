@@ -18,6 +18,8 @@ export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [adding, setAdding] = useState(false);
+  const [customFields, setCustomFields] = useState({});
+  const [customError, setCustomError] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -28,6 +30,7 @@ export default function ProductDetail() {
       if (p.scents?.length > 0) setSelectedScent(p.scents[0]);
       if (p.colors?.length > 0) setSelectedColor(p.colors[0]);
       setActiveImage(0);
+      setCustomFields({});
       setLoading(false);
     });
   }, [id]);
@@ -53,6 +56,33 @@ export default function ProductDetail() {
     : 0;
   const isOutOfStock = product.stock <= 0;
   const isLowStock = product.stock > 0 && product.stock <= 5;
+
+   const categoryName = (product.category?.name || "").toLowerCase();
+  const isHandkerchief = categoryName.includes("handkerchief");
+  const isEmbroideryHoop = categoryName.includes("embroidery hoop");
+  const isEmbroideredCloth = categoryName.includes("embroider") && !isEmbroideryHoop; // e.g. sweatshirt/cloth categories
+  const getRequiredFields = () => {
+    if (isHandkerchief) return ["nameInitial"];
+    if (isEmbroideryHoop) return ["coupleName", "eventDate"];
+    if (isEmbroideredCloth) return ["customSize", "customColor", "initialsYear"];
+    return [];
+  };
+
+  const handleCustomChange = (key, value) => {
+    setCustomFields((prev) => ({ ...prev, [key]: value }));
+    setCustomError("");
+  };
+
+  const validateCustomFields = () => {
+    const required = getRequiredFields();
+    for (const field of required) {
+      if (!customFields[field] || customFields[field].trim() === "") {
+        return false;
+      }
+    }
+    return true;
+  };
+
 
   const buildSelection = () => ({
     size: selectedSize,
@@ -242,7 +272,111 @@ const handleBuyNow = async () => {
               </button>
             </div>
           </div>
+ {isHandkerchief && (
+            <div className="mb-6 bg-gray-50 p-4 rounded-md space-y-3">
+              <h3 className="text-sm font-medium text-charcoal">Customise Your Handkerchief</h3>
+              <div>
+                <label className="text-sm text-gray-600">Name Initial *</label>
+                <input
+                  type="text"
+                  value={customFields.nameInitial || ""}
+                  onChange={(e) => handleCustomChange("nameInitial", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                  placeholder="e.g. A"
+                />
+              </div>
+              <div>
+                <label className="text-sm text-gray-600">Preferred Background Colour (optional)</label>
+                <input
+                  type="text"
+                  value={customFields.backgroundColour || ""}
+                  onChange={(e) => handleCustomChange("backgroundColour", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                  placeholder="e.g. Blue"
+                />
+              </div>
+              <div>
+                <label className="text-sm text-gray-600">Something Special? Mention Here (optional)</label>
+                <textarea
+                  value={customFields.specialInstructions || ""}
+                  onChange={(e) => handleCustomChange("specialInstructions", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                />
+              </div>
+            </div>
+          )}
 
+          {isEmbroideryHoop && (
+            <div className="mb-6 bg-gray-50 p-4 rounded-md space-y-3">
+              <h3 className="text-sm font-medium text-charcoal">Customise Your Embroidery Hoop</h3>
+              <div>
+                <label className="text-sm text-gray-600">Couple Name *</label>
+                <input
+                  type="text"
+                  value={customFields.coupleName || ""}
+                  onChange={(e) => handleCustomChange("coupleName", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                  placeholder="e.g. Alay & Meha"
+                />
+              </div>
+              <div>
+                <label className="text-sm text-gray-600">Wedding or Anniversary Date *</label>
+                <input
+                  type="date"
+                  value={customFields.eventDate || ""}
+                  onChange={(e) => handleCustomChange("eventDate", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                />
+              </div>
+            </div>
+          )}
+
+          {isEmbroideredCloth && (
+            <div className="mb-6 bg-gray-50 p-4 rounded-md space-y-3">
+              <h3 className="text-sm font-medium text-charcoal">Customise Your Item</h3>
+              <div>
+                <label className="text-sm text-gray-600">Size *</label>
+                <input
+                  type="text"
+                  value={customFields.customSize || ""}
+                  onChange={(e) => handleCustomChange("customSize", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                  placeholder="Check size availability separately"
+                />
+              </div>
+              <div>
+                <label className="text-sm text-gray-600">Color *</label>
+                <input
+                  type="text"
+                  value={customFields.customColor || ""}
+                  onChange={(e) => handleCustomChange("customColor", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                  placeholder="Exact colour name"
+                />
+              </div>
+              <div>
+                <label className="text-sm text-gray-600">Initials / Year to be Added *</label>
+                <input
+                  type="text"
+                  value={customFields.initialsYear || ""}
+                  onChange={(e) => handleCustomChange("initialsYear", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                />
+              </div>
+              <div>
+                <label className="text-sm text-gray-600">Anything Else to Keep in Mind? (optional)</label>
+                <textarea
+                  value={customFields.specialNotes || ""}
+                  onChange={(e) => handleCustomChange("specialNotes", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                />
+              </div>
+            </div>
+          )}
+
+          {customError && (
+            <p className="text-red-600 text-sm mb-4">{customError}</p>
+          )}
           <div className="flex gap-3">
             <button
               onClick={handleAddToCart}

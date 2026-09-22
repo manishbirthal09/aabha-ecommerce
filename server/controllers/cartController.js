@@ -28,13 +28,14 @@ export const addToCart = async (req, res) => {
     const existingItem = cart.items.find(
       (item) =>
         item.product.toString() === productId &&
-        JSON.stringify(item.selection || {}) === JSON.stringify(selection || {})
+        JSON.stringify(item.selection || {}) === JSON.stringify(selection || {})  &&
+        JSON.stringify(item.customization || {}) === JSON.stringify(customization || {})
     );
 
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
-      cart.items.push({ product: productId, quantity, selection: selection || {} });
+      cart.items.push({ product: productId, quantity, selection: selection || {}, customization: customization || {} });
     }
 
     await cart.save();

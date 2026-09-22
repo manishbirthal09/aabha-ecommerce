@@ -80,13 +80,7 @@ export default function Profile() {
                 </span>
               </div>
 
-              {/* <div className="space-y-1 mb-3">
-                {order.items.map((item, i) => (
-                  <p key={i} className="text-sm text-gray-600">
-                    {item.name} × {item.quantity}
-                  </p>
-                ))}
-              </div> */}
+          
               <div className="space-y-1 mb-3">
   {order.items.map((item, i) => (
     <p key={i} className="text-sm text-gray-600 flex items-center gap-2 flex-wrap">
@@ -96,9 +90,15 @@ export default function Profile() {
           🎁 FREE GIFT
         </span>
       )}
+      {item.customization && Object.keys(item.customization).length > 0 && (
+        <span className="text-xs text-gray-500">
+          {Object.entries(item.customization).map(([key, value]) => `${key}: ${value}`).join(" · ")}
+        </span>
+      )}
     </p>
   ))}
-</div>
+</div>  
+   
 <div className="mb-3 pt-3 border-t border-gray-100">
   <p className="text-xs font-medium text-gray-500 mb-1">Shipping Details</p>
   <p className="text-sm text-gray-600">{order.customer?.name}</p>
