@@ -61,10 +61,12 @@ export default function ProductDetail() {
   const isHandkerchief = categoryName.includes("HANDKERCHIEFS");
   const isEmbroideryHoop = categoryName.includes("EMBROIDERY HOOP");
   const isEmbroideredCloth = categoryName.includes("EMBROIDERED CLOTHES") && !isEmbroideryHoop; 
+  const isCaps = categoryName.includes("CAPS");
   const getRequiredFields = () => {
     if (isHandkerchief) return ["nameInitial"];
     if (isEmbroideryHoop) return ["coupleName", "eventDate"];
     if (isEmbroideredCloth) return ["customSize", "customColor", "initialsYear"];
+    if (isCaps) return ["capSize", "customColor",];
     return [];
   };
 
@@ -295,6 +297,8 @@ const handleBuyNow = async () => {
                   placeholder="e.g. Blue"
                 />
               </div>
+               
+              
               <div>
                 <label className="text-sm text-gray-600">Something Special? Mention Here (optional)</label>
                 <textarea
@@ -302,6 +306,13 @@ const handleBuyNow = async () => {
                   onChange={(e) => handleCustomChange("specialInstructions", e.target.value)}
                   className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
                 />
+              </div>
+               <div>
+              <a href="https://wa.me/919142918584?text=Hi%2C%20I%27m%20interested%20in%20customising" target="_blank" rel="noopener noreferrer">
+                <button className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition">
+                  Whatsapp for Customisation
+                </button>
+              </a>
               </div>
             </div>
           )}
@@ -327,6 +338,29 @@ const handleBuyNow = async () => {
                   onChange={(e) => handleCustomChange("eventDate", e.target.value)}
                   className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
                 />
+              </div>
+              <div>
+                <label className="text-sm text-gray-600"> bride dress colour and groom dress colour (optional)</label>
+                <textarea
+                  value={customFields.dressColors || ""}
+                  onChange={(e) => handleCustomChange("specialInstructions", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                />
+              </div>
+              <div>
+                <label className="text-sm text-gray-600">Something Special? Mention Here (optional)</label>
+                <textarea
+                  value={customFields.specialInstructions || ""}
+                  onChange={(e) => handleCustomChange("specialInstructions", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                />
+              </div>
+               <div>
+              <a href="https://wa.me/919142918584?text=Hi%2C%20I%27m%20interested%20in%20customising" target="_blank" rel="noopener noreferrer">
+                <button className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition">
+                  Whatsapp for Customisation
+                </button>
+              </a>
               </div>
             </div>
           )}
@@ -370,6 +404,54 @@ const handleBuyNow = async () => {
                   onChange={(e) => handleCustomChange("specialNotes", e.target.value)}
                   className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
                 />
+              </div>
+              <div>
+              <a href="https://wa.me/919142918584?text=Hi%2C%20I%27m%20interested%20in%20customising" target="_blank" rel="noopener noreferrer">
+                <button className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition">
+                  Whatsapp for Customisation
+                </button>
+              </a>
+              </div>
+            </div>
+          )}
+{isCaps && (
+            <div className="mb-6  p-4 rounded-md space-y-3">
+              <h3 className="text-sm font-medium text-charcoal">Customise Your Item</h3>
+              <div>
+                <label className="text-sm text-gray-600">Size *</label>
+                <input
+                  type="text"
+                  value={customFields.customSize || ""}
+                  onChange={(e) => handleCustomChange("customSize", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                  placeholder="Check size availability separately"
+                />
+              </div>
+              <div>
+                <label className="text-sm text-gray-600">Color *</label>
+                <input
+                  type="text"
+                  value={customFields.customColor || ""}
+                  onChange={(e) => handleCustomChange("customColor", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                  placeholder="Exact colour name"
+                />
+              </div>
+              
+              <div>
+                <label className="text-sm text-gray-600">Anything Else to Keep in Mind? (optional)</label>
+                <textarea
+                  value={customFields.specialNotes || ""}
+                  onChange={(e) => handleCustomChange("specialNotes", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+                />
+              </div>
+              <div>
+              <a href="https://wa.me/919142918584?text=Hi%2C%20I%27m%20interested%20in%20customising" target="_blank" rel="noopener noreferrer">
+                <button className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition">
+                  Whatsapp for Customisation
+                </button>
+              </a>
               </div>
             </div>
           )}

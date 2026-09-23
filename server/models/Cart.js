@@ -13,7 +13,7 @@ const cartItemSchema = new mongoose.Schema({
 
 const cartSchema = new mongoose.Schema(
   {
-    cartId: { type: String, required: true, unique: true }, // generated UUID, stored in browser
+    cartId: { type: String, required: true, unique: true }, 
     items: [cartItemSchema],
   },
   { timestamps: true }
