@@ -26,7 +26,7 @@ const urlCategory = searchParams.get("category") || "";
   });
 
   useEffect(() => {
-    api.get("/products", { params: { limit: 100 } }).then(({ data }) => {
+    api.get("/products", { params: { limit: 1000 } }).then(({ data }) => {
       setProducts(data.products);
       setLoading(false);
     });
@@ -50,18 +50,7 @@ const filteredProducts = useMemo(() => {
     return matchesSearch && matchesCategory && matchesFabric && matchesColor && matchesPrice;
   });
 }, [debouncedSearch, urlCategory, filters, products]);
-  // const filteredProducts = useMemo(() => {
-  //   return products.filter((p) => {
-  //     const matchesSearch = p.name.toLowerCase().includes(debouncedSearch.toLowerCase());
-  //     const matchesCategory =
-  //       filters.categories.length === 0 || filters.categories.includes(p.category?.name);
-  //     const matchesFabric = filters.fabrics.length === 0 || filters.fabrics.includes(p.fabric);
-  //     const matchesColor = filters.colors.length === 0 || filters.colors.includes(p.color);
-  //     const matchesPrice = p.price <= filters.maxPrice;
-  //     return matchesSearch && matchesCategory && matchesFabric && matchesColor && matchesPrice;
-  //   });
-  // }, [debouncedSearch, filters, products]);
-
+ 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
       <div className="flex justify-between ">
