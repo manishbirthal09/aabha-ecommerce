@@ -35,9 +35,7 @@ const [loadingCharge, setLoadingCharge] = useState(false);
   couponDiscountPercent: couponApplied ? couponDiscountPercent : 0,
   deliveryCharge,
 });
-// useEffect(() => {
-//     api.get("/settings").then(({ data }) => setSettings(data));
-//   }, []);
+
 
   const handleApplyCoupon = async () => {
     setCouponError("");
@@ -158,7 +156,7 @@ if (!isAuthenticated) {
 };
 
 
-// Checkout component ke andar:
+
 
 const fetchDeliveryCharge = async (pin) => {
   if (pin.length !== 6) return; 
@@ -204,16 +202,7 @@ const fetchDeliveryCharge = async (pin) => {
     </div>
   )}
 
-  {/* <div className="flex justify-between text-sm text-gray-600 py-1">
-    <span>Delivery Charge</span>
-    <span>₹{orderTotals.deliveryCharge.toLocaleString("en-IN")}</span>
-  </div> */}
-{/* {deliveryCharge > 0 && (
-  <div className="flex justify-between text-sm text-gray-600 py-1">
-    <span>Delivery Charge</span>
-    <span>₹{deliveryCharge.toLocaleString("en-IN")}</span>
-  </div>
-)} */}
+  
 {orderTotals.deliveryCharge > 0 && (
   <div className="flex justify-between text-sm text-gray-600 py-1">
     <span>Delivery Charge</span>
@@ -285,13 +274,7 @@ const fetchDeliveryCharge = async (pin) => {
           </div>
           <div>
             <label className="text-sm text-gray-600">Pincode</label>
-            {/* <input
-              name="pincode"
-              value={address.pincode}
-              onChange={handleChange}
-              required
-              className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
-            /> */}
+           
             <input
   type="text"
   placeholder="Enter Pincode"
@@ -302,6 +285,7 @@ const fetchDeliveryCharge = async (pin) => {
   setAddress({ ...address, pincode: e.target.value }); }}
   onBlur={() => fetchDeliveryCharge(pincode)}
   maxLength={6}
+  className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
 />
 
 {loadingCharge && <p>Calculating delivery charge...</p>}
