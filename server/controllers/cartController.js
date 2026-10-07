@@ -17,7 +17,7 @@ export const getCart = async (req, res) => {
 
 export const addToCart = async (req, res) => {
   try {
-    const { productId, quantity = 1, selection } = req.body;
+    const { productId, quantity = 1, selection, customization } = req.body;
     let cart = await Cart.findOne({ cartId: req.params.cartId });
 
     if (!cart) {
